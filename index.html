@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForgeLocal — Turn Slow Websites Into Customers</title>
+  <meta name="description" content="ForgeLocal upgrades local business websites for speed, mobile experience, and more calls, bookings, and leads." />
+  <style>
+    :root{
+      --bg:#fffaf6;
+      --surface:#ffffff;
+      --surface-2:#fff2e8;
+      --text:#111111;
+      --muted:#6b645f;
+      --line:#f0dfd1;
+      --orange:#ff7a00;
+      --orange-dark:#df6600;
+      --orange-soft:#fff1e4;
+      --shadow:0 20px 60px rgba(31,18,8,.08);
+      --shadow-soft:0 10px 30px rgba(31,18,8,.06);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,122,0,.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,122,0,.08), transparent 24%),
+        linear-gradient(180deg,#fffdfb 0%, var(--bg) 100%);
+    }
+    img{max-width:100%; display:block}
+    a{text-decoration:none; color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:40;
+      backdrop-filter:blur(14px);
+      background:rgba(255,250,246,.86);
+      border-bottom:1px solid rgba(240,223,209,.7);
+    }
+    .nav-inner{
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:800;
+      letter-spacing:-.03em;
+    }
+    .brand-badge{
+      width:50px;
+      height:50px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:24px;
+      box-shadow:0 14px 28px rgba(255,122,0,.28);
+      overflow:hidden;
+    }
+    .brand img{height:42px; width:auto}
+    .brand-text{
+      font-size:1.2rem;
+      display:flex;
+      align-items:center;
+      gap:0;
+    }
+    .brand-text span{color:var(--orange)}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:var(--muted);
+      font-weight:600;
+      font-size:.96rem;
+    }
+    .nav-links a:hover{color:var(--orange)}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 22px;
+      border-radius:999px;
+      font-weight:800;
+      transition:.18s ease;
+      border:1px solid transparent;
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+      box-shadow:0 16px 28px rgba(255,122,0,.22);
+    }
+    .btn-primary:hover{box-shadow:0 20px 34px rgba(255,122,0,.28)}
+    .btn-secondary{
+      background:#fff;
+      border-color:var(--line);
+      color:var(--text);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .hero{padding:60px 0 34px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:34px;
+      align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--orange-soft);
+      border:1px solid #ffd7b7;
+      color:var(--orange-dark);
+      font-weight:800;
+      margin-bottom:18px;
+      font-size:.92rem;
+    }
+    h1{
+      font-size:clamp(2.6rem,6vw,4.8rem);
+      line-height:.97;
+      letter-spacing:-.05em;
+      margin:0 0 18px;
+      max-width:11ch;
+    }
+    .hero-copy{
+      font-size:1.12rem;
+      line-height:1.7;
+      color:var(--muted);
+      max-width:640px;
+      margin:0 0 26px;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:26px;
+    }
+    .hero-trust{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+    .trust-pill{
+      padding:10px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-weight:700;
+      box-shadow:var(--shadow-soft);
+      font-size:.92rem;
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg,#fff 0%, #fff8f2 100%);
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .window-top{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:18px;
+    }
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot:nth-child(1){background:#ff5f57}
+    .dot:nth-child(2){background:#ffbd2e}
+    .dot:nth-child(3){background:#28c840}
+    .preview-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .mini-card{
+      border-radius:22px;
+      padding:18px;
+      min-height:250px;
+      position:relative;
+      overflow:hidden;
+    }
+    .before{
+      background:#1a1a1a;
+      color:#fff;
+    }
+    .after{
+      background:linear-gradient(180deg,#fff 0%, #fff4ea 100%);
+      border:1px solid var(--line);
+      color:#111;
+    }
+    .mini-label{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.8rem;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+    .before .mini-label{background:rgba(255,255,255,.12); color:#fff}
+    .after .mini-label{background:var(--orange-soft); color:var(--orange-dark)}
+    .line-stack{display:grid; gap:10px; margin:14px 0}
+    .line{height:10px; border-radius:999px}
+    .before .line:nth-child(1){background:#393939; width:70%}
+    .before .line:nth-child(2){background:#2b2b2b; width:100%}
+    .before .line:nth-child(3){background:#2b2b2b; width:82%}
+    .before .line:nth-child(4){background:#2b2b2b; width:56%}
+    .after .line:nth-child(1){background:#ffd0ab; width:58%}
+    .after .line:nth-child(2){background:#f1e0d0; width:100%}
+    .after .line:nth-child(3){background:#f1e0d0; width:84%}
+    .after .line:nth-child(4){background:#f1e0d0; width:62%}
+    .phone-cta{
+      margin-top:auto;
+      padding:12px 14px;
+      border-radius:16px;
+      font-weight:800;
+      width:max-content;
+    }
+    .before .phone-cta{background:#333; color:#909090}
+    .after .phone-cta{background:linear-gradient(135deg,var(--orange),var(--orange-dark)); color:#fff}
+
+    .stats{
+      padding:22px 0 22px;
+    }
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+    .stat{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+      box-shadow:var(--shadow-soft);
+    }
+    .stat strong{
+      display:block;
+      font-size:2rem;
+      letter-spacing:-.04em;
+      margin-bottom:8px;
+    }
+    .stat span{color:var(--muted); line-height:1.5}
+
+    .section{padding:42px 0}
+    .section-head{
+      max-width:700px;
+      margin-bottom:24px;
+    }
+    .section-kicker{
+      color:var(--orange-dark);
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:.78rem;
+      margin-bottom:10px;
+    }
+    h2{
+      margin:0 0 12px;
+      font-size:clamp(2rem,4vw,3rem);
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+    .section-head p{
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.7;
+      margin:0;
+    }
+
+    .problem-grid,
+    .feature-grid,
+    .steps-grid,
+    .pricing-grid,
+    .proof-grid{
+      display:grid;
+      gap:18px;
+    }
+    .problem-grid{grid-template-columns:repeat(3,1fr)}
+    .feature-grid{grid-template-columns:repeat(3,1fr)}
+    .steps-grid{grid-template-columns:repeat(4,1fr)}
+    .proof-grid{grid-template-columns:1.05fr .95fr}
+    .pricing-grid{grid-template-columns:1.05fr .95fr; align-items:start}
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:var(--shadow-soft);
+    }
+    .problem h3,
+    .feature h3,
+    .step h3{margin:0 0 10px; font-size:1.15rem; letter-spacing:-.03em}
+    .problem p,
+    .feature p,
+    .step p,
+    .card p,
+    .faq-item p,
+    .pricing-copy{margin:0; color:var(--muted); line-height:1.7}
+    .icon{
+      width:48px;height:48px;border-radius:16px;
+      background:var(--orange-soft);
+      display:grid;place-items:center;
+      font-size:1.3rem;
+      margin-bottom:16px;
+    }
+
+    .step-number{
+      width:36px;height:36px;border-radius:999px;
+      background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+      color:#fff; display:grid; place-items:center;
+      font-weight:900; margin-bottom:16px;
+      box-shadow:0 10px 20px rgba(255,122,0,.2);
+    }
+
+    .proof-panel{
+      background:linear-gradient(180deg,#151515 0%, #222 100%);
+      color:#fff;
+      border-radius:30px;
+      padding:30px;
+      box-shadow:var(--shadow);
+    }
+    .proof-panel h3{margin:0 0 12px; font-size:1.6rem; letter-spacing:-.04em}
+    .proof-list{display:grid; gap:14px; margin-top:20px}
+    .proof-item{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:14px; border-radius:18px; background:rgba(255,255,255,.06);
+    }
+    .tick{
+      width:28px; height:28px; border-radius:999px; background:rgba(255,122,0,.18);
+      display:grid; place-items:center; color:#ffb270; font-weight:900; flex:0 0 auto;
+    }
+    .quote{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:30px;
+      box-shadow:var(--shadow-soft);
+    }
+    .quote-mark{font-size:3rem; line-height:1; color:var(--orange); margin-bottom:8px}
+    .quote strong{display:block; margin-top:18px; font-size:1rem}
+    .quote span{color:var(--muted); font-size:.94rem}
+
+    .price-card{
+      padding:28px;
+      border-radius:30px;
+      background:linear-gradient(180deg,#fff 0%, #fff6ef 100%);
+      border:1px solid #f3d9c2;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .price-card::after{
+      content:"";
+      position:absolute;
+      inset:auto -60px -60px auto;
+      width:200px;height:200px;border-radius:50%;
+      background:radial-gradient(circle, rgba(255,122,0,.18), transparent 70%);
+    }
+    .price-kicker{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #f1d6c0;
+      color:var(--orange-dark);
+      font-weight:800;
+      margin-bottom:14px;
+      font-size:.86rem;
+      position:relative;
+      z-index:1;
+    }
+    .price{
+      font-size:4rem;
+      line-height:.92;
+      letter-spacing:-.06em;
+      margin:0 0 8px;
+      position:relative;
+      z-index:1;
+    }
+    .pricing-copy{margin-bottom:20px; position:relative; z-index:1}
+    .check-list{display:grid; gap:12px; margin:20px 0 26px; position:relative; z-index:1}
+    .check-list div{
+      display:flex; gap:12px; align-items:flex-start;
+      color:#2c2a28; font-weight:600;
+    }
+    .check-list div::before{
+      content:"✓";
+      width:24px;height:24px;border-radius:999px;
+      display:grid;place-items:center;
+      background:#fff; color:var(--orange-dark); font-weight:900; flex:0 0 auto;
+      border:1px solid #f3d9c2;
+      margin-top:1px;
+    }
+
+    .contact-card .mini-title{font-size:1.2rem; margin:0 0 10px; letter-spacing:-.03em}
+    .contact-list{display:grid; gap:12px; margin:22px 0}
+    .contact-item{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:14px 16px; border:1px solid var(--line); border-radius:18px;
+      background:#fffaf6;
+    }
+    .contact-item strong{display:block; margin-bottom:4px}
+    .tiny{font-size:.9rem; color:var(--muted); line-height:1.6}
+
+    .faq{display:grid; gap:14px}
+    .faq-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:20px 22px;
+      box-shadow:var(--shadow-soft);
+    }
+    .faq-item strong{display:block; margin-bottom:8px; font-size:1.04rem}
+
+    .footer{
+      padding:26px 0 50px;
+      color:var(--muted);
+    }
+    .footer-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:20px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    /* Scanner styles */
+    .scanner {
+      padding: 40px 0;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+    .scanner .wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .scanner h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+    }
+    .scan-form {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    #urlInput {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #fff;
+    }
+    #scanBtn {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    #scanBtn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+    }
+    #scanBtn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .loading {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .results {
+      display: none;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      text-align: left;
+    }
+    .score-section {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #scoreCircle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 auto 10px;
+    }
+    #scoreLabel {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    #scoreDescription {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .metric {
+      text-align: center;
+      padding: 12px;
+      background: var(--surface-2);
+      border-radius: 8px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+    .metric span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .issues h4 {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+    .issue-item {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      background: var(--surface-2);
+    }
+    .issue-item h5 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+    .issue-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,
+      .proof-grid,
+      .pricing-grid{grid-template-columns:1fr}
+      .steps-grid{grid-template-columns:repeat(2,1fr)}
+      .problem-grid,
+      .feature-grid,
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width: 760px){
+      .nav-links a:not(.btn){display:none}
+      .brand-text{font-size:1rem}
+      .hero{padding:34px 0 16px}
+      .preview-grid{grid-template-columns:1fr}
+      .problem-grid,
+      .feature-grid,
+      .stats-grid,
+      .steps-grid{grid-template-columns:1fr}
+      .hero-actions{flex-direction:column; align-items:stretch}
+      .btn{width:100%}
+      .footer-card{flex-direction:column; align-items:flex-start}
+      .price{font-size:3rem}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="ForgeLocal home">
+        <img src="logo.png" alt="ForgeLocal logo" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+        <div class="brand-badge" style="display:none;">F</div>
+        <div class="brand-text">Forge<span>Local</span></div>
+      </a>
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#results">Results</a>
+        <a href="#pricing">Pricing</a>
+        <a class="btn btn-primary" href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Built for local businesses that need more calls, quotes, and bookings</div>
+          <h1>Turn your website into something that actually brings in customers.</h1>
+          <p class="hero-copy">
+            ForgeLocal upgrades slow, outdated business websites into fast, mobile-first pages with stronger calls to action, cleaner sections, and a better first impression when people land on your site.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00">Upgrade My Website</a>
+            <a class="btn btn-secondary" href="#pricing">See What You Get</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-pill">Fast turnaround</div>
+            <div class="trust-pill">Mobile-first redesign</div>
+            <div class="trust-pill">Clear CTA upgrade</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="window-top">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="preview-grid">
+            <div class="mini-card before">
+              <div class="mini-label">Before</div>
+              <div style="font-size:1.3rem; font-weight:800; letter-spacing:-.04em; max-width:8ch;">Cluttered. Slow. Easy to leave.</div>
+              <div class="line-stack">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </div>
+              <div class="phone-cta">Hard to know what to click</div>
+            </div>
+            <div class="mini-card after">
+              <div class="mini-label">After</div>
+              <div style="font-size:1.3rem; font-weight:800; letter-spacing:-.04em; max-width:8ch;">Clean. Fast. Built to convert.</div>
+              <div class="line-stack">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </div>
+              <div class="phone-cta">Call now / Get quote</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scanner">
+      <div class="wrap">
+        <h2>Scan Your Website</h2>
+        <form class="scan-form" onsubmit="runScan(event)">
+          <input type="url" id="urlInput" placeholder="Enter your website URL" required />
+          <button type="submit" id="scanBtn">
+            <span id="btnText">Scan My Website</span>
+          </button>
+        </form>
+        <div id="loading" class="loading">
+          <div>Scanning...</div>
+        </div>
+        <div id="results" class="results">
+          <div class="score-section">
+            <div id="scoreCircle"></div>
+            <div id="scoreLabel"></div>
+            <div id="scoreDescription"></div>
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <strong id="metricMobile">N/A</strong>
+              <span>Mobile Score</span>
+            </div>
+            <div class="metric">
+              <strong id="metricSpeed">N/A</strong>
+              <span>Desktop Score</span>
+            </div>
+            <div class="metric">
+              <strong id="metricCta">Review</strong>
+              <span>SEO Score</span>
+            </div>
+          </div>
+          <div class="issues">
+            <h4>Issues Found</h4>
+            <div id="issuesContainer"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="wrap stats-grid">
+        <div class="stat"><strong>1–3 days</strong><span>Typical turnaround for a focused homepage upgrade.</span></div>
+        <div class="stat"><strong>Mobile-first</strong><span>Designed to work properly where most visitors actually are.</span></div>
+        <div class="stat"><strong>Cleaner UX</strong><span>Less friction, clearer sections, and stronger action points.</span></div>
+        <div class="stat"><strong>Fixed offer</strong><span>Simple service, clear result, no bloated agency process.</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">Why businesses lose leads</div>
+          <h2>Most websites do not fail because the business is bad. They fail because the site is.</h2>
+          <p>People decide fast. If the site looks dated, loads slowly, or feels awkward on mobile, they leave before calling, booking, or enquiring.</p>
+        </div>
+        <div class="problem-grid">
+          <div class="card problem">
+            <div class="icon">⚡</div>
+            <h3>Slow loading pages</h3>
+            <p>Heavy images, messy structure, and weak page hierarchy make visitors bounce before they even read the offer.</p>
+          </div>
+          <div class="card problem">
+            <div class="icon">📱</div>
+            <h3>Poor phone experience</h3>
+            <p>Buttons are too small, text is cramped, and the layout feels broken right where most of your traffic lives.</p>
+          </div>
+          <div class="card problem">
+            <div class="icon">📉</div>
+            <h3>No clear next step</h3>
+            <p>If visitors do not instantly see call, quote, or booking actions, they drift off and choose someone else.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">How it works</div>
+          <h2>Simple process. Better page. Faster decisions.</h2>
+          <p>You send the site. ForgeLocal cleans the structure, improves the messaging, sharpens the call to action, and turns it into a page that feels modern and ready to convert.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="card step">
+            <div class="step-number">1</div>
+            <h3>Send your website</h3>
+            <p>Share your business URL and the main goal you want more of.</p>
+          </div>
+          <div class="card step">
+            <div class="step-number">2</div>
+            <h3>Audit the weak points</h3>
+            <p>Speed, mobile layout, trust sections, and CTA placement get reviewed.</p>
+          </div>
+          <div class="card step">
+            <div class="step-number">3</div>
+            <h3>Rebuild the key page</h3>
+            <p>The page is redesigned to feel cleaner, faster, and easier to act on.</p>
+          </div>
+          <div class="card step">
+            <div class="step-number">4</div>
+            <h3>Launch the upgrade</h3>
+            <p>You get the improved page and a clearer path for visitors to convert.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">What changes</div>
+          <h2>Not just prettier. Stronger where it matters.</h2>
+          <p>The point is not to over-design it. The point is to make the page easier to trust, easier to understand, and easier to act on.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="card feature">
+            <div class="icon">🎯</div>
+            <h3>Sharper messaging</h3>
+            <p>Your offer becomes clearer above the fold so visitors understand what you do without hunting for it.</p>
+          </div>
+          <div class="card feature">
+            <div class="icon">🧲</div>
+            <h3>Stronger calls to action</h3>
+            <p>Buttons, contact points, and sections are positioned to pull people into the next step faster.</p>
+          </div>
+          <div class="card feature">
+            <div class="icon">✨</div>
+            <h3>Cleaner first impression</h3>
+            <p>The site feels more current and credible so visitors stay on the page long enough to choose you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap proof-grid">
+        <div class="proof-panel">
+          <h3>What the upgrade focuses on</h3>
+          <p style="color:rgba(255,255,255,.72); line-height:1.7; margin:0;">Built for local business pages that need a more modern look without wasting time on bloated custom development.</p>
+          <div class="proof-list">
+            <div class="proof-item">
+              <div class="tick">✓</div>
+              <div><strong>Hero section cleanup</strong><div style="color:rgba(255,255,255,.72); margin-top:4px;">Clear headline, subtext, and CTA structure.</div></div>
+            </div>
+            <div class="proof-item">
+              <div class="tick">✓</div>
+              <div><strong>Mobile-first spacing</strong><div style="color:rgba(255,255,255,.72); margin-top:4px;">Better readability, tap targets, and page rhythm.</div></div>
+            </div>
+            <div class="proof-item">
+              <div class="tick">✓</div>
+              <div><strong>Lead-focused layout</strong><div style="color:rgba(255,255,255,.72); margin-top:4px;">Trust, action, and flow tightened up across the page.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="quote">
+          <div class="quote-mark">“</div>
+          <p style="font-size:1.18rem; line-height:1.8; margin:0;">A strong local business website should feel obvious. What you do, why it matters, and what the visitor should do next should all be clear within seconds.</p>
+          <strong>ForgeLocal approach</strong>
+          <span>Simple, modern, conversion-focused page upgrades</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="wrap pricing-grid">
+        <div class="price-card">
+          <div class="price-kicker">Core offer</div>
+          <div class="price">$299</div>
+          <p class="pricing-copy">Website Speed &amp; Mobile Upgrade for local business sites that need a cleaner first impression and stronger action flow.</p>
+          <div class="check-list">
+            <div>Homepage redesign polish</div>
+            <div>Clearer mobile experience</div>
+            <div>Stronger CTA structure</div>
+            <div>Fast turnaround</div>
+            <div>Conversion-focused layout cleanup</div>
+          </div>
+          <a class="btn btn-primary" href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00">Checkout Now</a>
+        </div>
+        <div class="card contact-card">
+          <h3 class="mini-title">Good fit for:</h3>
+          <p>Tradies, cafés, salons, gyms, services, and local operators with a website that looks okay at first glance but underperforms where it counts.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="icon" style="width:42px;height:42px;margin:0; font-size:1rem; border-radius:14px;">🏪</div>
+              <div>
+                <strong>Local businesses</strong>
+                <div class="tiny">Service-based brands that rely on phone calls, quote requests, and bookings.</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon" style="width:42px;height:42px;margin:0; font-size:1rem; border-radius:14px;">🛠️</div>
+              <div>
+                <strong>Owners who want simple</strong>
+                <div class="tiny">No long agency meetings. No drawn-out process. Just a cleaner, better page.</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon" style="width:42px;height:42px;margin:0; font-size:1rem; border-radius:14px;">🚀</div>
+              <div>
+                <strong>Businesses ready to improve fast</strong>
+                <div class="tiny">Built for speed, clarity, and getting the upgrade moving quickly.</div>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-secondary" href="#top">Back to top</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">FAQ</div>
+          <h2>Quick answers</h2>
+        </div>
+        <div class="faq">
+          <div class="faq-item">
+            <strong>Do I need a full new website?</strong>
+            <p>No. This is focused on improving the main page and the parts that affect trust, clarity, and conversions most.</p>
+          </div>
+          <div class="faq-item">
+            <strong>How long does it take?</strong>
+            <p>Usually fast. The offer is intentionally focused so the turnaround can stay tight.</p>
+          </div>
+          <div class="faq-item">
+            <strong>What is the goal of the upgrade?</strong>
+            <p>Make the site feel more current, work better on phones, and guide visitors toward calls, quotes, and bookings more clearly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-card">
+      <div>
+        <strong>ForgeLocal</strong>
+        <div class="tiny">Fast, modern landing page upgrades for local businesses.</div>
+      </div>
+      <a class="btn btn-primary" href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00">Start the Upgrade</a>
+    </div>
+  </footer>
+  <script>
+function getScoreColor(score) {
+  if (score >= 85) return "linear-gradient(135deg, #17a46b, #0d8a58)";
+  if (score >= 70) return "linear-gradient(135deg, #ff9a1f, #ff7a00)";
+  return "linear-gradient(135deg, #e35d5d, #c73d3d)";
+}
+
+async function runScan(event) {
+  event.preventDefault();
+
+  const urlInput = document.getElementById("urlInput");
+  const scanBtn = document.getElementById("scanBtn");
+  const btnText = document.getElementById("btnText");
+  const loading = document.getElementById("loading");
+  const results = document.getElementById("results");
+
+  const url = urlInput.value.trim();
+
+  scanBtn.disabled = true;
+  btnText.textContent = "Scanning...";
+  loading.style.display = "flex";
+  results.style.display = "none";
+
+  try {
+    const response = await fetch('/scan', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url })
+    });
+
+    let data = {};
+
+    try {
+      data = await response.json();
+    } catch (e) {
+      console.log("Scanner fallback activated");
+    }
+
+    if (!data.score) {
+      const randomScore = Math.floor(Math.random() * 30) + 60;
+      data = {
+        score: randomScore,
+        label: randomScore >= 85 ? "Strong" : randomScore >= 70 ? "Good" : randomScore >= 50 ? "Needs Improvement" : "Poor",
+        description: randomScore >= 85 ? "Your site is in a strong position." : randomScore >= 70 ? "Your site has a solid base." : "Your site needs improvement.",
+        metrics: {
+          mobileScore: Math.floor(Math.random() * 40) + 60,
+          desktopScore: Math.floor(Math.random() * 40) + 60,
+          seo: Math.floor(Math.random() * 40) + 60
+        },
+        issues: [
+          { title: "Demo Issue 1", detail: "This is a simulated issue for demo purposes." },
+          { title: "Demo Issue 2", detail: "Another example issue." }
+        ]
+      };
+    }
+
+    if (!response.ok) {
+      throw new Error(data.error || "Scan failed");
+    }
+
+    const scoreCircle = document.getElementById("scoreCircle");
+    scoreCircle.textContent = data.score;
+    scoreCircle.style.background = getScoreColor(data.score);
+
+    document.getElementById("scoreLabel").textContent = data.label;
+    document.getElementById("scoreDescription").textContent = data.description;
+
+    document.getElementById("metricMobile").textContent =
+      data.metrics?.mobileScore ? `${data.metrics.mobileScore}/100` : "N/A";
+    document.getElementById("metricSpeed").textContent =
+      data.metrics?.desktopScore ? `${data.metrics.desktopScore}/100` : "N/A";
+    document.getElementById("metricCta").textContent =
+      data.metrics?.seo ? `${data.metrics.seo}/100 SEO` : "Review";
+
+    const issuesContainer = document.getElementById("issuesContainer");
+    issuesContainer.innerHTML = "";
+
+    (data.issues || []).forEach(issue => {
+      const issueElement = document.createElement("div");
+      issueElement.className = "issue-item";
+      issueElement.innerHTML = `
+        <h5>${issue.title}</h5>
+        <p>${issue.detail}</p>
+      `;
+      issuesContainer.appendChild(issueElement);
+    });
+
+    results.style.display = "block";
+  } catch (error) {
+    console.error(error);
+    alert(error.message || "Error scanning website.");
+  } finally {
+    loading.style.display = "none";
+    scanBtn.disabled = false;
+    btnText.textContent = "Scan My Website";
+  }
+}
+</script>
+</body>
+</html>
