@@ -856,6 +856,287 @@
         padding:72px 0;
       }
     }
+
+    /* UPGRADED SCANNER STYLES */
+    .scan-result{
+      margin-top: 30px;
+    }
+
+    .result-card{
+      background: #ffffff;
+      border: 1px solid #eee;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+    }
+
+    .result-top{
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .score-circle{
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff7a00, #ff9d47);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(255,122,0,0.25);
+    }
+
+    .score-circle span{
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .score-circle small{
+      font-size: 15px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .result-summary{
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .scan-label{
+      color: #ff7a00;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 12px;
+    }
+
+    .result-summary h2{
+      margin: 0 0 10px;
+      font-size: 32px;
+      line-height: 1.1;
+      color: #111;
+    }
+
+    .result-summary p{
+      margin: 0;
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .impact-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 30px 0;
+    }
+
+    .impact-box{
+      border-radius: 18px;
+      padding: 22px;
+      border: 1px solid #eee;
+    }
+
+    .impact-box .impact-title{
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    .impact-box strong{
+      display: block;
+      font-size: 26px;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    .impact-box p{
+      margin: 0;
+      color: #666;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .danger{
+      background: #fff7f2;
+    }
+
+    .money{
+      background: #fffaf3;
+    }
+
+    .success{
+      background: #f6fff8;
+    }
+
+    .preview-section{
+      margin: 38px 0;
+    }
+
+    .preview-section h3{
+      margin-bottom: 18px;
+      font-size: 24px;
+      color: #111;
+    }
+
+    .preview-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .preview-card{
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .preview-badge{
+      display: inline-block;
+      background: #222;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .preview-badge.good{
+      background: #ff7a00;
+    }
+
+    .preview-window{
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .preview-bar{
+      height: 34px;
+      background: #f3f3f3;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .preview-body{
+      padding: 18px;
+    }
+
+    .old-line, .new-line, .new-header, .old-button, .new-button{
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .old-line{
+      height: 12px;
+      background: #ddd;
+    }
+
+    .old-line.short{
+      width: 55%;
+    }
+
+    .old-button{
+      height: 36px;
+      width: 120px;
+      background: #cfcfcf;
+    }
+
+    .new-header{
+      height: 90px;
+      background: linear-gradient(135deg, #ff7a00, #ffb066);
+    }
+
+    .new-line{
+      height: 12px;
+      background: #ffd9b8;
+    }
+
+    .new-line.short{
+      width: 55%;
+    }
+
+    .new-button{
+      height: 40px;
+      width: 140px;
+      background: #ff7a00;
+    }
+
+    .preview-card p{
+      margin: 0;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .result-cta{
+      margin-top: 10px;
+      background: linear-gradient(135deg, #fff6ed, #fffaf6);
+      border: 1px solid #f2e0cf;
+      border-radius: 20px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .result-cta h3{
+      margin: 0 0 10px;
+      font-size: 28px;
+      color: #111;
+    }
+
+    .result-cta p{
+      margin: 0 auto 18px;
+      max-width: 620px;
+      color: #555;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .result-btn{
+      display: inline-block;
+      background: #ff7a00;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 14px 26px;
+      border-radius: 14px;
+      transition: 0.2s ease;
+    }
+
+    .result-btn:hover{
+      background: #e96f00;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px){
+      .impact-grid,
+      .preview-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .result-summary h2{
+        font-size: 26px;
+      }
+
+      .result-card{
+        padding: 22px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1011,7 +1292,89 @@
         <button id="scanBtn" class="btn btn-primary">Scan My Website</button>
       </div>
 
-      <div id="scanResult" class="scan-result hidden"></div>
+      <!-- SCANNER RESULT BLOCK -->
+      <section id="scan-result" class="scan-result" style="display:none;">
+        <div class="result-card">
+          <div class="result-top">
+            <div class="score-circle">
+              <span id="resultScore">58</span>
+              <small>/100</small>
+            </div>
+
+            <div class="result-summary">
+              <p class="scan-label">Your Website Health Score</p>
+              <h2 id="resultHeadline">Your website is costing you customers</h2>
+              <p id="resultText">
+                Your site looks outdated, loads too slowly on mobile, and makes it harder for people to trust you and book.
+              </p>
+            </div>
+          </div>
+
+          <div class="impact-grid">
+            <div class="impact-box danger">
+              <span class="impact-title">Estimated Lost Customers</span>
+              <strong id="lostCustomers">12–18 per month</strong>
+              <p>People leave when a site feels slow, messy, or hard to use.</p>
+            </div>
+
+            <div class="impact-box money">
+              <span class="impact-title">Fix Price</span>
+              <strong>$299</strong>
+              <p>One-time website upgrade to improve speed, trust, and mobile performance.</p>
+            </div>
+
+            <div class="impact-box success">
+              <span class="impact-title">Extra Clients Potential</span>
+              <strong id="extraClients">4–9 extra clients/month</strong>
+              <p>Small website improvements can turn more visitors into paying customers.</p>
+            </div>
+          </div>
+
+          <div class="preview-section">
+            <h3>Before vs After Preview</h3>
+
+            <div class="preview-grid">
+              <div class="preview-card before">
+                <span class="preview-badge">Before</span>
+                <div class="preview-window">
+                  <div class="preview-bar"></div>
+                  <div class="preview-body preview-old">
+                    <div class="old-line short"></div>
+                    <div class="old-line"></div>
+                    <div class="old-line"></div>
+                    <div class="old-button"></div>
+                  </div>
+                </div>
+                <p>Slow, outdated, low trust, weak mobile experience.</p>
+              </div>
+
+              <div class="preview-card after">
+                <span class="preview-badge good">After</span>
+                <div class="preview-window">
+                  <div class="preview-bar"></div>
+                  <div class="preview-body preview-new">
+                    <div class="new-header"></div>
+                    <div class="new-line short"></div>
+                    <div class="new-line"></div>
+                    <div class="new-button"></div>
+                  </div>
+                </div>
+                <p>Clean, modern, mobile-friendly, built to convert visitors.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-cta">
+            <h3>Ready to fix it for $299?</h3>
+            <p>
+              Get your website upgraded to look better, load faster, and help bring in more customers.
+            </p>
+            <a href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00" class="result-btn">
+              Fix My Website for $299
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 
@@ -1149,112 +1512,54 @@
   <script>
     const scanBtn = document.getElementById("scanBtn");
     const scanInput = document.getElementById("scanInput");
-    const scanResult = document.getElementById("scanResult");
 
     scanBtn.addEventListener("click", function () {
       const url = scanInput.value.trim();
 
       if (!url) {
-        scanResult.classList.remove("hidden");
-        scanResult.innerHTML = `
-          <div class="scan-top">
-            <div>
-              <h3>Please enter a website URL</h3>
-              <div class="scan-url">Example: dentistgeelong.com.au</div>
-            </div>
-          </div>
-        `;
+        alert("Please enter a website URL");
         return;
       }
 
       const score = Math.floor(Math.random() * 25) + 60;
-      const lost = Math.floor(Math.random() * 20) + 20;
-      const extraClients = Math.floor(Math.random() * 8) + 4;
-
-      let scoreClass = "score-low";
-      if (score >= 70) scoreClass = "score-mid";
-      if (score >= 80) scoreClass = "score-high";
-
-      scanResult.classList.remove("hidden");
-      scanResult.innerHTML = `
-        <div class="scan-top">
-          <div>
-            <h3>ForgeLocal Website Audit</h3>
-            <div class="scan-url">Website scanned: ${url}</div>
-          </div>
-          <div class="scan-score ${scoreClass}">${score}/100</div>
-        </div>
-
-        <div class="scan-grid">
-          <div class="scan-card">
-            <h4>Issues detected</h4>
-            <ul>
-              <li>Slow mobile load speed</li>
-              <li>Weak call-to-action above the fold</li>
-              <li>Poor first screen layout</li>
-              <li>Missing booking / enquiry optimisation</li>
-            </ul>
-          </div>
-
-          <div class="scan-card">
-            <h4>Business impact</h4>
-            <ul>
-              <li>Visitors leave before taking action</li>
-              <li>Lower trust on first impression</li>
-              <li>Fewer calls, bookings, and quote requests</li>
-              <li>Mobile users drop off faster</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="scan-loss">Estimated lost customers: ${lost}%</div>
-
-        <div class="scan-card" style="margin-top:18px;">
-          <h4>Fix estimate</h4>
-          <ul>
-            <li>Estimated cost to fix: <strong>$299</strong></li>
-            <li>Potential extra clients per month: <strong>${extraClients}</strong></li>
-            <li>Cleaner mobile experience</li>
-            <li>Stronger trust and action flow</li>
-          </ul>
-        </div>
-
-        <div class="scan-preview-wrap">
-          <h4>Before vs After Preview</h4>
-
-          <div class="scan-preview-grid">
-            <div class="preview-card preview-before">
-              <div class="preview-label">Before</div>
-              <div class="preview-title">Outdated and hard to act on</div>
-              <ul>
-                <li>Weak first impression</li>
-                <li>No clear next step</li>
-                <li>Cluttered mobile layout</li>
-                <li>Lower trust at a glance</li>
-              </ul>
-            </div>
-
-            <div class="preview-card preview-after">
-              <div class="preview-label">After</div>
-              <div class="preview-title">Cleaner and built to convert</div>
-              <ul>
-                <li>Clearer headline and structure</li>
-                <li>Stronger call-to-action</li>
-                <li>Better mobile readability</li>
-                <li>More trust and more enquiries</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="scan-cta">
-          <p>
-            A cleaner, faster page could help turn more visitors into real calls, quotes, and bookings.
-          </p>
-          <a href="#pricing" class="btn btn-primary">Fix My Website for $299</a>
-        </div>
-      `;
+      showScanResult(score);
     });
+
+    function showScanResult(score = 58) {
+      const resultBlock = document.getElementById("scan-result");
+      const scoreEl = document.getElementById("resultScore");
+      const headlineEl = document.getElementById("resultHeadline");
+      const textEl = document.getElementById("resultText");
+      const lostCustomersEl = document.getElementById("lostCustomers");
+      const extraClientsEl = document.getElementById("extraClients");
+
+      scoreEl.textContent = score;
+
+      if (score >= 85) {
+        headlineEl.textContent = "Your website is performing well";
+        textEl.textContent = "Your site is in good shape, but there are still improvements that could help you convert more visitors.";
+        lostCustomersEl.textContent = "1–3 per month";
+        extraClientsEl.textContent = "1–2 extra clients/month";
+      } else if (score >= 70) {
+        headlineEl.textContent = "Your website needs improvement";
+        textEl.textContent = "Your site is decent, but it likely loses trust and conversions on mobile and speed.";
+        lostCustomersEl.textContent = "5–9 per month";
+        extraClientsEl.textContent = "2–5 extra clients/month";
+      } else if (score >= 50) {
+        headlineEl.textContent = "Your website is costing you customers";
+        textEl.textContent = "Your site looks outdated, loads too slowly on mobile, and makes it harder for people to trust you and book.";
+        lostCustomersEl.textContent = "12–18 per month";
+        extraClientsEl.textContent = "4–9 extra clients/month";
+      } else {
+        headlineEl.textContent = "Your website is hurting your business";
+        textEl.textContent = "Your site likely drives visitors away before they call, book, or message you.";
+        lostCustomersEl.textContent = "18–30 per month";
+        extraClientsEl.textContent = "6–12 extra clients/month";
+      }
+
+      resultBlock.style.display = "block";
+      resultBlock.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   </script>
 </body>
 </html>
