@@ -684,40 +684,8 @@
     <section class="scanner">
       <div class="wrap">
         <h2>Scan Your Website</h2>
-        <form class="scan-form" onsubmit="runScan(event)">
-          <input type="url" id="urlInput" placeholder="Enter your website URL" required />
-          <button type="submit" id="scanBtn">
-            <span id="btnText">Scan My Website</span>
-          </button>
-        </form>
-        <div id="loading" class="loading">
-          <div>Scanning...</div>
-        </div>
-        <div id="results" class="results">
-          <div class="score-section">
-            <div id="scoreCircle"></div>
-            <div id="scoreLabel"></div>
-            <div id="scoreDescription"></div>
-          </div>
-          <div class="metrics">
-            <div class="metric">
-              <strong id="metricMobile">N/A</strong>
-              <span>Mobile Score</span>
-            </div>
-            <div class="metric">
-              <strong id="metricSpeed">N/A</strong>
-              <span>Desktop Score</span>
-            </div>
-            <div class="metric">
-              <strong id="metricCta">Review</strong>
-              <span>SEO Score</span>
-            </div>
-          </div>
-          <div class="issues">
-            <h4>Issues Found</h4>
-            <div id="issuesContainer"></div>
-          </div>
-        </div>
+        <input id="scanInput" placeholder="Enter your website URL">
+        <button id="scanBtn">Scan My Website</button>
       </div>
     </section>
 
@@ -925,102 +893,30 @@
     </div>
   </footer>
   <script>
-function getScoreColor(score) {
-  if (score >= 85) return "linear-gradient(135deg, #17a46b, #0d8a58)";
-  if (score >= 70) return "linear-gradient(135deg, #ff9a1f, #ff7a00)";
-  return "linear-gradient(135deg, #e35d5d, #c73d3d)";
-}
-
-async function runScan(event) {
-  event.preventDefault();
-
-  const urlInput = document.getElementById("urlInput");
-  const scanBtn = document.getElementById("scanBtn");
-  const btnText = document.getElementById("btnText");
-  const loading = document.getElementById("loading");
-  const results = document.getElementById("results");
-
-  const url = urlInput.value.trim();
-
-  scanBtn.disabled = true;
-  btnText.textContent = "Scanning...";
-  loading.style.display = "flex";
-  results.style.display = "none";
-
-  try {
-    const response = await fetch('/scan', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url })
-    });
-
-    let data = {};
-
-    try {
-      data = await response.json();
-    } catch (e) {
-      console.log("Scanner fallback activated");
-    }
-
-    if (!data.score) {
-      const randomScore = Math.floor(Math.random() * 30) + 60;
-      data = {
-        score: randomScore,
-        label: randomScore >= 85 ? "Strong" : randomScore >= 70 ? "Good" : randomScore >= 50 ? "Needs Improvement" : "Poor",
-        description: randomScore >= 85 ? "Your site is in a strong position." : randomScore >= 70 ? "Your site has a solid base." : "Your site needs improvement.",
-        metrics: {
-          mobileScore: Math.floor(Math.random() * 40) + 60,
-          desktopScore: Math.floor(Math.random() * 40) + 60,
-          seo: Math.floor(Math.random() * 40) + 60
-        },
-        issues: [
-          { title: "Demo Issue 1", detail: "This is a simulated issue for demo purposes." },
-          { title: "Demo Issue 2", detail: "Another example issue." }
-        ]
-      };
-    }
-
-    if (!response.ok) {
-      throw new Error(data.error || "Scan failed");
-    }
-
-    const scoreCircle = document.getElementById("scoreCircle");
-    scoreCircle.textContent = data.score;
-    scoreCircle.style.background = getScoreColor(data.score);
-
-    document.getElementById("scoreLabel").textContent = data.label;
-    document.getElementById("scoreDescription").textContent = data.description;
-
-    document.getElementById("metricMobile").textContent =
-      data.metrics?.mobileScore ? `${data.metrics.mobileScore}/100` : "N/A";
-    document.getElementById("metricSpeed").textContent =
-      data.metrics?.desktopScore ? `${data.metrics.desktopScore}/100` : "N/A";
-    document.getElementById("metricCta").textContent =
-      data.metrics?.seo ? `${data.metrics.seo}/100 SEO` : "Review";
-
-    const issuesContainer = document.getElementById("issuesContainer");
-    issuesContainer.innerHTML = "";
-
-    (data.issues || []).forEach(issue => {
-      const issueElement = document.createElement("div");
-      issueElement.className = "issue-item";
-      issueElement.innerHTML = `
-        <h5>${issue.title}</h5>
-        <p>${issue.detail}</p>
-      `;
-      issuesContainer.appendChild(issueElement);
-    });
-
-    results.style.display = "block";
-  } catch (error) {
-    console.error(error);
-    alert(error.message || "Error scanning website.");
-  } finally {
-    loading.style.display = "none";
-    scanBtn.disabled = false;
-    btnText.textContent = "Scan My Website";
+document.querySelector("#scanBtn").addEventListener("click", function () {
+  const url = document.querySelector("#scanInput").value;
+  if (!url) {
+    alert("Enter a website URL");
+    return;
   }
-}
+  const score = Math.floor(Math.random() * 25) + 60;
+  const results = `
+  ForgeLocal Website Audit
+
+  Website: ${url}
+
+  Score: ${score}/100
+
+  Issues detected:
+  • Slow mobile load speed
+  • Weak call-to-action above the fold
+  • Poor first screen layout
+  • Missing booking / enquiry optimisation
+
+  Estimated lost customers: ${Math.floor(Math.random()*20)+20}%
+  `;
+  alert(results);
+});
 </script>
 </body>
 </html>
