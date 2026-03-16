@@ -1618,6 +1618,138 @@
         padding: 22px;
       }
     }
+
+    .compare-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .compare-panel{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .compare-head{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .compare-caption strong{
+      display: block;
+      font-size: 15px;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .compare-caption p{
+      margin: 0;
+      color: #6b635d;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .light-bar{
+      background: #f8f0e8;
+    }
+
+    .after-mockup{
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #e6d7cb;
+      background: #fff;
+    }
+
+    .after-frame{
+      padding: 20px;
+      min-height: 260px;
+      background: linear-gradient(180deg, #fffaf5, #fff3e8);
+    }
+
+    .after-hero{
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ff7a00, #ffb066);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .after-pill{
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .after-title{
+      height: 28px;
+      width: 72%;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.95);
+      margin-bottom: 12px;
+    }
+
+    .after-line{
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .after-line.short{
+      width: 58%;
+    }
+
+    .after-actions{
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .after-btn{
+      height: 38px;
+      border-radius: 12px;
+    }
+
+    .after-btn.primary{
+      width: 140px;
+      background: #111;
+    }
+
+    .after-btn.secondary{
+      width: 110px;
+      background: rgba(255,255,255,0.72);
+    }
+
+    .after-content{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .after-card{
+      height: 92px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #f0ddd0;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+
+    @media (max-width: 900px){
+      .compare-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .after-content{
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1809,29 +1941,78 @@
 
           <div class="screenshot-card">
             <div class="screenshot-top">
-              <span class="screenshot-label">Website preview</span>
+              <span class="screenshot-label">Before vs After Preview</span>
               <span class="screenshot-url" id="previewDomain">yourwebsite.com</span>
             </div>
 
-            <div class="site-preview" id="sitePreview">
-              <div class="browser-bar">
-                <span></span><span></span><span></span>
+            <div class="compare-grid">
+              <div class="compare-panel">
+                <div class="compare-head">
+                  <span class="mini-badge dark">Before</span>
+                </div>
+
+                <div class="site-preview" id="sitePreview">
+                  <div class="browser-bar">
+                    <span></span><span></span><span></span>
+                  </div>
+
+                  <div class="real-preview-wrap">
+                    <img
+                      id="previewImage"
+                      class="preview-image"
+                      alt="Current website preview"
+                      style="display:none;"
+                    />
+
+                    <div id="previewFallback" class="preview-frame">
+                      <div class="preview-hero"></div>
+                      <div class="preview-line short"></div>
+                      <div class="preview-line"></div>
+                      <div class="preview-line"></div>
+                      <div class="preview-button"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="compare-caption">
+                  <strong>Current site</strong>
+                  <p id="beforeCaption">This is what visitors see now.</p>
+                </div>
               </div>
 
-              <div class="real-preview-wrap">
-                <img
-                  id="previewImage"
-                  class="preview-image"
-                  alt="Website preview screenshot"
-                  style="display:none;"
-                />
+              <div class="compare-panel">
+                <div class="compare-head">
+                  <span class="mini-badge light">After</span>
+                </div>
 
-                <div id="previewFallback" class="preview-frame">
-                  <div class="preview-hero"></div>
-                  <div class="preview-line short"></div>
-                  <div class="preview-line"></div>
-                  <div class="preview-line"></div>
-                  <div class="preview-button"></div>
+                <div class="after-mockup" id="afterMockup">
+                  <div class="browser-bar light-bar">
+                    <span></span><span></span><span></span>
+                  </div>
+
+                  <div class="after-frame">
+                    <div class="after-hero">
+                      <div class="after-pill">Built to convert</div>
+                      <div class="after-title"></div>
+                      <div class="after-line short"></div>
+                      <div class="after-line"></div>
+                      <div class="after-actions">
+                        <div class="after-btn primary"></div>
+                        <div class="after-btn secondary"></div>
+                      </div>
+                    </div>
+
+                    <div class="after-content">
+                      <div class="after-card"></div>
+                      <div class="after-card"></div>
+                      <div class="after-card"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="compare-caption">
+                  <strong>Improved version</strong>
+                  <p id="afterCaption">Cleaner structure, stronger CTA, better mobile flow.</p>
                 </div>
               </div>
             </div>
@@ -2090,13 +2271,17 @@
       const previewImage = document.getElementById("previewImage");
       const previewFallback = document.getElementById("previewFallback");
       const previewHero = previewFallback.querySelector(".preview-hero");
+      const afterHero = document.querySelector(".after-hero");
 
       if (score >= 75) {
         previewHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
+        afterHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
       } else if (score >= 62) {
         previewHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
+        afterHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
       } else {
         previewHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
+        afterHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
       }
 
       previewImage.style.display = "none";
@@ -2134,6 +2319,8 @@
       const issuesList = document.getElementById("issuesList");
       const impactList = document.getElementById("impactList");
       const ctaText = document.getElementById("ctaText");
+      const beforeCaption = document.getElementById("beforeCaption");
+      const afterCaption = document.getElementById("afterCaption");
 
       const rawUrl = input.value.trim();
 
@@ -2159,6 +2346,8 @@
       let impacts = [];
       let cta = "";
       let scoreColor = "#22b36b";
+      let beforeText = "";
+      let afterText = "";
 
       if (score >= 75) {
         lostCustomers = "4–8 per month";
@@ -2177,6 +2366,8 @@
         ];
         cta = "Your website is doing okay, but a cleaner layout could still turn more visitors into paying customers.";
         scoreColor = "#22b36b";
+        beforeText = "The current site works, but it is not pushing action strongly enough.";
+        afterText = "A sharper headline, clearer structure, and stronger CTA could lift conversions.";
       } else if (score >= 62) {
         lostCustomers = "8–14 per month";
         extraClients = "3–6 extra clients/month";
@@ -2194,6 +2385,8 @@
         ];
         cta = "A cleaner, faster page could help turn more visitors into real calls, quotes, and bookings.";
         scoreColor = "#f39a1f";
+        beforeText = "The site likely loses visitors because the first screen is not guiding them clearly.";
+        afterText = "A clearer layout and better mobile flow could turn more visitors into enquiries.";
       } else {
         lostCustomers = "12–18 per month";
         extraClients = "4–9 extra clients/month";
@@ -2211,6 +2404,8 @@
         ];
         cta = "Your site is likely costing you leads every month. A focused homepage upgrade could make a real difference fast.";
         scoreColor = "#e56a54";
+        beforeText = "The current site likely feels slow, cluttered, or hard to act on for new visitors.";
+        afterText = "A rebuilt homepage could create a stronger first impression and drive more calls and bookings.";
       }
 
       setTimeout(() => {
@@ -2230,6 +2425,8 @@
         lostCustomersText.textContent = lostCustomers;
         extraClientsText.textContent = extraClients;
         ctaText.textContent = cta;
+        beforeCaption.textContent = beforeText;
+        afterCaption.textContent = afterText;
 
         issuesList.innerHTML = issues.map(item => `<li>${item}</li>`).join("");
         impactList.innerHTML = impacts.map(item => `<li>${item}</li>`).join("");
