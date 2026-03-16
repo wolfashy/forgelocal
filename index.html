@@ -534,6 +534,72 @@
       line-height:1.7;
     }
 
+    /* SCAN PREVIEW */
+    .scan-preview-wrap{
+      margin-top:22px;
+    }
+
+    .scan-preview-wrap h4{
+      margin:0 0 14px;
+      font-size:18px;
+      color:#111;
+    }
+
+    .scan-preview-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .preview-card{
+      border-radius:20px;
+      padding:22px;
+      border:1px solid #ead7c9;
+    }
+
+    .preview-before{
+      background:#171717;
+      color:#fff;
+      border-color:#2b2b2b;
+    }
+
+    .preview-after{
+      background:#fff;
+      color:#111;
+    }
+
+    .preview-label{
+      display:inline-block;
+      font-size:12px;
+      font-weight:800;
+      border-radius:999px;
+      padding:7px 11px;
+      margin-bottom:12px;
+    }
+
+    .preview-before .preview-label{
+      background:rgba(255,255,255,0.12);
+      color:#fff;
+    }
+
+    .preview-after .preview-label{
+      background:#fff1e4;
+      color:#ff7a00;
+    }
+
+    .preview-title{
+      font-size:22px;
+      font-weight:800;
+      margin-bottom:12px;
+      line-height:1.1;
+    }
+
+    .preview-card ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.8;
+    }
+
     /* HOW IT WORKS */
     .steps{
       display:grid;
@@ -747,7 +813,8 @@
       }
 
       .pricing-features,
-      .scan-grid{
+      .scan-grid,
+      .scan-preview-grid{
         grid-template-columns:1fr;
       }
     }
@@ -1150,6 +1217,34 @@
             <li>Cleaner mobile experience</li>
             <li>Stronger trust and action flow</li>
           </ul>
+        </div>
+
+        <div class="scan-preview-wrap">
+          <h4>Before vs After Preview</h4>
+
+          <div class="scan-preview-grid">
+            <div class="preview-card preview-before">
+              <div class="preview-label">Before</div>
+              <div class="preview-title">Outdated and hard to act on</div>
+              <ul>
+                <li>Weak first impression</li>
+                <li>No clear next step</li>
+                <li>Cluttered mobile layout</li>
+                <li>Lower trust at a glance</li>
+              </ul>
+            </div>
+
+            <div class="preview-card preview-after">
+              <div class="preview-label">After</div>
+              <div class="preview-title">Cleaner and built to convert</div>
+              <ul>
+                <li>Clearer headline and structure</li>
+                <li>Stronger call-to-action</li>
+                <li>Better mobile readability</li>
+                <li>More trust and more enquiries</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div class="scan-cta">
