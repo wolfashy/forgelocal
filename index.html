@@ -1031,6 +1031,24 @@
       background: #dfcdbf;
     }
 
+    .real-preview-wrap{
+      background: #fff;
+      min-height: 260px;
+    }
+
+    .preview-image{
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    #previewFallback{
+      display: block;
+    }
+
     .preview-frame{
       padding: 24px;
       min-height: 220px;
@@ -1799,12 +1817,22 @@
               <div class="browser-bar">
                 <span></span><span></span><span></span>
               </div>
-              <div class="preview-frame">
-                <div class="preview-hero"></div>
-                <div class="preview-line short"></div>
-                <div class="preview-line"></div>
-                <div class="preview-line"></div>
-                <div class="preview-button"></div>
+
+              <div class="real-preview-wrap">
+                <img
+                  id="previewImage"
+                  class="preview-image"
+                  alt="Website preview screenshot"
+                  style="display:none;"
+                />
+
+                <div id="previewFallback" class="preview-frame">
+                  <div class="preview-hero"></div>
+                  <div class="preview-line short"></div>
+                  <div class="preview-line"></div>
+                  <div class="preview-line"></div>
+                  <div class="preview-button"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -2031,12 +2059,14 @@
   </footer>
 
   <script>
+    function normalizeUrl(url) {
+      if (url.startsWith("http://") || url.startsWith("https://")) return url;
+      return "https://" + url;
+    }
+
     function getDomainFromUrl(url) {
       try {
-        const fixed = url.startsWith("http://") || url.startsWith("https://")
-          ? url
-          : "https://" + url;
-        return new URL(fixed).hostname.replace("www.", "");
+        return new URL(normalizeUrl(url)).hostname.replace("www.", "");
       } catch {
         return url.replace(/^https?:\/\//, "").replace("www.", "").split("/")[0];
       }
@@ -2050,12 +2080,44 @@
         const progress = Math.min((currentTime - startTime) / duration, 1);
         const current = Math.floor(progress * (end - start) + start);
         element.textContent = current + "/100";
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
+        if (progress < 1) requestAnimationFrame(update);
       }
 
       requestAnimationFrame(update);
+    }
+
+    function setPreviewScreenshot(url, score) {
+      const previewImage = document.getElementById("previewImage");
+      const previewFallback = document.getElementById("previewFallback");
+      const previewHero = previewFallback.querySelector(".preview-hero");
+
+      if (score >= 75) {
+        previewHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
+      } else if (score >= 62) {
+        previewHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
+      } else {
+        previewHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
+      }
+
+      previewImage.style.display = "none";
+      previewFallback.style.display = "block";
+
+      const screenshotUrl =
+        "https://image.microlink.io/?url=" +
+        encodeURIComponent(normalizeUrl(url)) +
+        "&screenshot=true&meta=false&embed=screenshot.url";
+
+      previewImage.onload = function () {
+        previewImage.style.display = "block";
+        previewFallback.style.display = "none";
+      };
+
+      previewImage.onerror = function () {
+        previewImage.style.display = "none";
+        previewFallback.style.display = "block";
+      };
+
+      previewImage.src = screenshotUrl;
     }
 
     function runScan() {
@@ -2072,7 +2134,6 @@
       const issuesList = document.getElementById("issuesList");
       const impactList = document.getElementById("impactList");
       const ctaText = document.getElementById("ctaText");
-      const sitePreview = document.getElementById("sitePreview");
 
       const rawUrl = input.value.trim();
 
@@ -2082,6 +2143,7 @@
         return;
       }
 
+      const fullUrl = normalizeUrl(rawUrl);
       const domain = getDomainFromUrl(rawUrl);
 
       result.style.display = "none";
@@ -2089,7 +2151,7 @@
       loadingUrlText.textContent = "Analyzing " + domain + "...";
       loadingStep.textContent = "Checking speed, mobile layout, trust signals, and calls to action...";
 
-      const score = Math.floor(Math.random() * 36) + 49; // 49 to 84
+      const score = Math.floor(Math.random() * 36) + 49;
 
       let lostCustomers = "";
       let extraClients = "";
@@ -2152,7 +2214,7 @@
       }
 
       setTimeout(() => {
-        loadingStep.textContent = "Building your conversion summary and upgrade preview...";
+        loadingStep.textContent = "Capturing website preview and building your conversion summary...";
       }, 1100);
 
       setTimeout(() => {
@@ -2172,13 +2234,7 @@
         issuesList.innerHTML = issues.map(item => `<li>${item}</li>`).join("");
         impactList.innerHTML = impacts.map(item => `<li>${item}</li>`).join("");
 
-        if (score >= 75) {
-          sitePreview.querySelector(".preview-hero").style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
-        } else if (score >= 62) {
-          sitePreview.querySelector(".preview-hero").style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
-        } else {
-          sitePreview.querySelector(".preview-hero").style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
-        }
+        setPreviewScreenshot(fullUrl, score);
 
         result.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 2600);
