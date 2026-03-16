@@ -2341,6 +2341,8 @@
 
       return Math.floor(score);
     }
+
+    function setPreviewScreenshot(url, score) {
       const previewImage = document.getElementById("previewImage");
       const previewFallback = document.getElementById("previewFallback");
       const previewHero = previewFallback.querySelector(".preview-hero");
@@ -2376,7 +2378,7 @@
       };
 
       previewImage.src = screenshotUrl;
-  
+    }
 
     function runScan() {
       const input = document.getElementById("scanInput");
