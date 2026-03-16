@@ -803,6 +803,469 @@
       font-size:14px;
     }
 
+    /* UPGRADED SCANNER STYLES */
+    .scanner-card{
+      max-width: 980px;
+      margin: 0 auto;
+      background: #fff8f2;
+      border: 1px solid #eadbce;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    }
+
+    .scanner-form{
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .scanner-form input{
+      flex: 1;
+      height: 58px;
+      border-radius: 16px;
+      border: 1px solid #dfd2c7;
+      padding: 0 18px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+      color: #111;
+    }
+
+    .scanner-form input:focus{
+      border-color: #ff7a00;
+      box-shadow: 0 0 0 4px rgba(255,122,0,0.10);
+    }
+
+    .scan-button{
+      border: none;
+      height: 58px;
+      padding: 0 22px;
+      border-radius: 16px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      background: #ff7a00;
+      color: #fff;
+      transition: 0.2s ease;
+    }
+
+    .scan-button:hover{
+      transform: translateY(-1px);
+      background: #e86f00;
+    }
+
+    .scan-loading{
+      margin-top: 10px;
+      background: #fff;
+      border: 1px solid #eadbce;
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .loading-top{
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .loading-top strong{
+      display: block;
+      font-size: 16px;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .loading-top p{
+      margin: 0;
+      color: #6f665f;
+      line-height: 1.5;
+    }
+
+    .loading-spinner{
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      border-radius: 50%;
+      border: 4px solid #f1dfd0;
+      border-top-color: #ff7a00;
+      animation: spinScanner 0.9s linear infinite;
+    }
+
+    @keyframes spinScanner{
+      to{ transform: rotate(360deg); }
+    }
+
+    .loading-bars{
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .loading-bar{
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: #f4e6da;
+      overflow: hidden;
+    }
+
+    .loading-fill{
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff7a00, #ffb066);
+    }
+
+    .fill-1{ animation: fillBar1 1.4s ease forwards; }
+    .fill-2{ animation: fillBar2 2.2s ease forwards; }
+    .fill-3{ animation: fillBar3 3s ease forwards; }
+
+    @keyframes fillBar1{
+      from{ width: 0; }
+      to{ width: 92%; }
+    }
+    @keyframes fillBar2{
+      from{ width: 0; }
+      to{ width: 84%; }
+    }
+    @keyframes fillBar3{
+      from{ width: 0; }
+      to{ width: 76%; }
+    }
+
+    .upgraded-result{
+      margin-top: 20px;
+      background: #fff;
+      border: 1px solid #eadbce;
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .result-header{
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .result-header h3{
+      margin: 0 0 6px 0;
+      font-size: 22px;
+      color: #111;
+    }
+
+    .result-header p{
+      margin: 0;
+      color: #6b635d;
+      font-size: 14px;
+    }
+
+    .score-wrap{
+      display: flex;
+      align-items: center;
+    }
+
+    .score-badge{
+      background: #22b36b;
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      min-width: 102px;
+      text-align: center;
+    }
+
+    .screenshot-card{
+      border: 1px solid #eadbce;
+      border-radius: 20px;
+      padding: 18px;
+      background: #fffaf6;
+      margin-bottom: 20px;
+    }
+
+    .screenshot-top{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .screenshot-label{
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .screenshot-url{
+      font-size: 13px;
+      color: #7a7068;
+    }
+
+    .site-preview{
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #e6d7cb;
+      background: #fff;
+    }
+
+    .browser-bar{
+      height: 38px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f6eee7;
+      border-bottom: 1px solid #eadbce;
+    }
+
+    .browser-bar span{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #dfcdbf;
+    }
+
+    .preview-frame{
+      padding: 24px;
+      min-height: 220px;
+      background: linear-gradient(180deg, #fff, #fbf5ef);
+    }
+
+    .preview-hero{
+      height: 82px;
+      width: 100%;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ff7a00, #ffbf85);
+      margin-bottom: 18px;
+    }
+
+    .preview-line{
+      height: 14px;
+      border-radius: 999px;
+      background: #e8dacc;
+      margin-bottom: 12px;
+      width: 100%;
+    }
+
+    .preview-line.short{
+      width: 58%;
+    }
+
+    .preview-button{
+      margin-top: 16px;
+      width: 180px;
+      height: 42px;
+      border-radius: 14px;
+      background: #ff7a00;
+    }
+
+    .result-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .result-box{
+      border: 1px solid #eadbce;
+      border-radius: 18px;
+      padding: 18px;
+      background: #fff;
+    }
+
+    .result-box h4{
+      margin: 0 0 12px;
+      font-size: 18px;
+      color: #111;
+    }
+
+    .result-box ul{
+      margin: 0;
+      padding-left: 18px;
+      color: #4f4842;
+      line-height: 1.8;
+    }
+
+    .stat-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .stat-box{
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid #eadbce;
+    }
+
+    .stat-label{
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #726961;
+    }
+
+    .stat-box strong{
+      display: block;
+      font-size: 24px;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .stat-box p{
+      margin: 0;
+      color: #665e57;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .stat-box.danger{ background: #fff6f0; }
+    .stat-box.money{ background: #fff8f1; }
+    .stat-box.success{ background: #f6fff8; }
+
+    .before-after-section{
+      margin-bottom: 22px;
+    }
+
+    .before-after-section h4{
+      margin: 0 0 14px;
+      font-size: 19px;
+      color: #111;
+    }
+
+    .before-after-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .before-card,
+    .after-card{
+      border: 1px solid #eadbce;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .before-card{
+      background: #fff;
+    }
+
+    .after-card{
+      background: #fff;
+    }
+
+    .mini-badge{
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .mini-badge.dark{
+      background: #111;
+      color: #fff;
+    }
+
+    .mini-badge.light{
+      background: #ffe2c6;
+      color: #d86b00;
+    }
+
+    .mini-preview{
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .mini-preview-dark{
+      background: #111;
+      color: #fff;
+    }
+
+    .mini-preview-light{
+      background: #fff8f2;
+      color: #111;
+    }
+
+    .mini-title{
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .mini-preview ul{
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.7;
+    }
+
+    .result-cta-row{
+      border-top: 1px solid #eadbce;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .result-cta-row p{
+      margin: 0;
+      color: #5f5750;
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    .primary-button{
+      display: inline-block;
+      background: #ff7a00;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 14px 26px;
+      border-radius: 14px;
+      transition: 0.2s ease;
+    }
+
+    .primary-button:hover{
+      background: #e96f00;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px){
+      .scanner-form{
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .result-grid,
+      .stat-grid,
+      .before-after-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .result-header{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .result-cta-row{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
     /* RESPONSIVE */
     @media (max-width: 1080px){
       .hero-grid,
@@ -1277,104 +1740,162 @@
     </div>
   </section>
 
-  <section id="scanner" class="scanner-wrap section">
+  <section class="scanner-section" id="scan">
     <div class="container">
-      <div class="scanner-head">
-        <div class="eyebrow">Free instant audit</div>
+      <div class="section-heading">
+        <span class="eyebrow">Free instant audit</span>
         <h2>Scan your website and see what might be costing you customers.</h2>
         <p>
-          Get a fast, simple audit focused on mobile experience, clarity, calls to action, and conversion friction.
+          Get a fast, simple audit focused on mobile experience, clarity, calls to action,
+          and conversion friction.
         </p>
       </div>
 
-      <div class="scanner-box">
-        <input id="scanInput" type="url" placeholder="Enter your website URL" />
-        <button id="scanBtn" class="btn btn-primary" onclick="runScan()">Scan My Website</button>
-      </div>
+      <div class="scanner-card">
+        <div class="scanner-form">
+          <input
+            id="scanInput"
+            type="url"
+            placeholder="https://yourwebsite.com"
+          />
+          <button class="scan-button" onclick="runScan()">Scan My Website</button>
+        </div>
 
-      <!-- SCANNER RESULT BLOCK -->
-      <section id="scan-result" class="scan-result" style="display:none;">
-        <div class="result-card">
-          <div class="result-top">
-            <div class="score-circle">
-              <span id="resultScore">58</span>
-              <small>/100</small>
-            </div>
-
-            <div class="result-summary">
-              <p class="scan-label">Your Website Health Score</p>
-              <h2 id="resultHeadline">Your website is costing you customers</h2>
-              <p id="resultText">
-                Your site looks outdated, loads too slowly on mobile, and makes it harder for people to trust you and book.
-              </p>
+        <div id="scanLoading" class="scan-loading" style="display:none;">
+          <div class="loading-top">
+            <div class="loading-spinner"></div>
+            <div>
+              <strong id="loadingUrlText">Analyzing website...</strong>
+              <p id="loadingStep">Checking speed, mobile layout, and trust signals...</p>
             </div>
           </div>
 
-          <div class="impact-grid">
-            <div class="impact-box danger">
-              <span class="impact-title">Estimated Lost Customers</span>
-              <strong id="lostCustomers">12–18 per month</strong>
-              <p>People leave when a site feels slow, messy, or hard to use.</p>
+          <div class="loading-bars">
+            <div class="loading-bar"><span class="loading-fill fill-1"></span></div>
+            <div class="loading-bar"><span class="loading-fill fill-2"></span></div>
+            <div class="loading-bar"><span class="loading-fill fill-3"></span></div>
+          </div>
+        </div>
+
+        <div id="scan-result" class="audit-result upgraded-result" style="display:none;">
+          <div class="result-header">
+            <div>
+              <h3>ForgeLocal Website Audit</h3>
+              <p id="scannedUrlText">Website scanned: yourwebsite.com</p>
             </div>
 
-            <div class="impact-box money">
-              <span class="impact-title">Fix Price</span>
+            <div class="score-wrap">
+              <div class="score-badge" id="scoreBadge">58/100</div>
+            </div>
+          </div>
+
+          <div class="screenshot-card">
+            <div class="screenshot-top">
+              <span class="screenshot-label">Website preview</span>
+              <span class="screenshot-url" id="previewDomain">yourwebsite.com</span>
+            </div>
+
+            <div class="site-preview" id="sitePreview">
+              <div class="browser-bar">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="preview-frame">
+                <div class="preview-hero"></div>
+                <div class="preview-line short"></div>
+                <div class="preview-line"></div>
+                <div class="preview-line"></div>
+                <div class="preview-button"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-box">
+              <h4>Issues detected</h4>
+              <ul id="issuesList">
+                <li>Slow mobile load speed</li>
+                <li>Weak call-to-action above the fold</li>
+                <li>Poor first screen layout</li>
+                <li>Missing booking / enquiry optimisation</li>
+              </ul>
+            </div>
+
+            <div class="result-box">
+              <h4>Business impact</h4>
+              <ul id="impactList">
+                <li>Visitors leave before taking action</li>
+                <li>Lower trust on first impression</li>
+                <li>Fewer calls, bookings, and quote requests</li>
+                <li>Mobile users drop off faster</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-box danger">
+              <span class="stat-label">Estimated lost customers</span>
+              <strong id="lostCustomersText">12–18 per month</strong>
+              <p>Missed calls, bookings, and quote requests from visitors who leave early.</p>
+            </div>
+
+            <div class="stat-box money">
+              <span class="stat-label">Fix price</span>
               <strong>$299</strong>
-              <p>One-time website upgrade to improve speed, trust, and mobile performance.</p>
+              <p>One focused homepage upgrade to improve speed, clarity, mobile flow, and trust.</p>
             </div>
 
-            <div class="impact-box success">
-              <span class="impact-title">Extra Clients Potential</span>
-              <strong id="extraClients">4–9 extra clients/month</strong>
-              <p>Small website improvements can turn more visitors into paying customers.</p>
+            <div class="stat-box success">
+              <span class="stat-label">Extra clients potential</span>
+              <strong id="extraClientsText">4–9 extra clients/month</strong>
+              <p>A clearer page can turn more visitors into real enquiries and customers.</p>
             </div>
           </div>
 
-          <div class="preview-section">
-            <h3>Before vs After Preview</h3>
+          <div class="before-after-section">
+            <h4>Before vs After Preview</h4>
 
-            <div class="preview-grid">
-              <div class="preview-card before">
-                <span class="preview-badge">Before</span>
-                <div class="preview-window">
-                  <div class="preview-bar"></div>
-                  <div class="preview-body preview-old">
-                    <div class="old-line short"></div>
-                    <div class="old-line"></div>
-                    <div class="old-line"></div>
-                    <div class="old-button"></div>
-                  </div>
+            <div class="before-after-grid">
+              <div class="before-card">
+                <span class="mini-badge dark">Before</span>
+                <div class="mini-preview mini-preview-dark">
+                  <div class="mini-title">Outdated and hard to act on</div>
+                  <ul>
+                    <li>Weak first impression</li>
+                    <li>No clear next step</li>
+                    <li>Cluttered mobile layout</li>
+                    <li>Lower trust at a glance</li>
+                  </ul>
                 </div>
-                <p>Slow, outdated, low trust, weak mobile experience.</p>
               </div>
 
-              <div class="preview-card after">
-                <span class="preview-badge good">After</span>
-                <div class="preview-window">
-                  <div class="preview-bar"></div>
-                  <div class="preview-body preview-new">
-                    <div class="new-header"></div>
-                    <div class="new-line short"></div>
-                    <div class="new-line"></div>
-                    <div class="new-button"></div>
-                  </div>
+              <div class="after-card">
+                <span class="mini-badge light">After</span>
+                <div class="mini-preview mini-preview-light">
+                  <div class="mini-title">Cleaner and built to convert</div>
+                  <ul>
+                    <li>Clearer headline and structure</li>
+                    <li>Stronger call-to-action</li>
+                    <li>Better mobile readability</li>
+                    <li>More trust and more enquiries</li>
+                  </ul>
                 </div>
-                <p>Clean, modern, mobile-friendly, built to convert visitors.</p>
               </div>
             </div>
           </div>
 
-          <div class="result-cta">
-            <h3>Ready to fix it for $299?</h3>
-            <p>
-              Get your website upgraded to look better, load faster, and help bring in more customers.
+          <div class="result-cta-row">
+            <p id="ctaText">
+              A cleaner, faster page could help turn more visitors into real calls, quotes, and bookings.
             </p>
-            <a href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00" class="result-btn">
+            <a
+              href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00"
+              class="primary-button"
+            >
               Fix My Website for $299
             </a>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   </section>
 
@@ -1510,61 +2031,157 @@
   </footer>
 
   <script>
-    function runScan() {
-      const urlInput = document.getElementById("scanInput").value;
+    function getDomainFromUrl(url) {
+      try {
+        const fixed = url.startsWith("http://") || url.startsWith("https://")
+          ? url
+          : "https://" + url;
+        return new URL(fixed).hostname.replace("www.", "");
+      } catch {
+        return url.replace(/^https?:\/\//, "").replace("www.", "").split("/")[0];
+      }
+    }
 
-      if (!urlInput) {
+    function animateScore(element, start, end, duration) {
+      let startTime = null;
+
+      function update(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const current = Math.floor(progress * (end - start) + start);
+        element.textContent = current + "/100";
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    function runScan() {
+      const input = document.getElementById("scanInput");
+      const loading = document.getElementById("scanLoading");
+      const result = document.getElementById("scan-result");
+      const loadingUrlText = document.getElementById("loadingUrlText");
+      const loadingStep = document.getElementById("loadingStep");
+      const scannedUrlText = document.getElementById("scannedUrlText");
+      const previewDomain = document.getElementById("previewDomain");
+      const scoreBadge = document.getElementById("scoreBadge");
+      const lostCustomersText = document.getElementById("lostCustomersText");
+      const extraClientsText = document.getElementById("extraClientsText");
+      const issuesList = document.getElementById("issuesList");
+      const impactList = document.getElementById("impactList");
+      const ctaText = document.getElementById("ctaText");
+      const sitePreview = document.getElementById("sitePreview");
+
+      const rawUrl = input.value.trim();
+
+      if (!rawUrl) {
         alert("Please enter a website URL first");
+        input.focus();
         return;
       }
 
-      const result = document.getElementById("scan-result");
+      const domain = getDomainFromUrl(rawUrl);
 
-      // fake scan delay
       result.style.display = "none";
+      loading.style.display = "block";
+      loadingUrlText.textContent = "Analyzing " + domain + "...";
+      loadingStep.textContent = "Checking speed, mobile layout, trust signals, and calls to action...";
 
-      setTimeout(() => {
-        // random score
-        const score = Math.floor(Math.random() * 40) + 50;
+      const score = Math.floor(Math.random() * 36) + 49; // 49 to 84
 
-        showScanResult(score);
-      }, 1200);
-    }
+      let lostCustomers = "";
+      let extraClients = "";
+      let issues = [];
+      let impacts = [];
+      let cta = "";
+      let scoreColor = "#22b36b";
 
-    function showScanResult(score = 58) {
-      const resultBlock = document.getElementById("scan-result");
-      const scoreEl = document.getElementById("resultScore");
-      const headlineEl = document.getElementById("resultHeadline");
-      const textEl = document.getElementById("resultText");
-      const lostCustomersEl = document.getElementById("lostCustomers");
-      const extraClientsEl = document.getElementById("extraClients");
-
-      scoreEl.textContent = score;
-
-      if (score >= 85) {
-        headlineEl.textContent = "Your website is performing well";
-        textEl.textContent = "Your site is in good shape, but there are still improvements that could help you convert more visitors.";
-        lostCustomersEl.textContent = "1–3 per month";
-        extraClientsEl.textContent = "1–2 extra clients/month";
-      } else if (score >= 70) {
-        headlineEl.textContent = "Your website needs improvement";
-        textEl.textContent = "Your site is decent, but it likely loses trust and conversions on mobile and speed.";
-        lostCustomersEl.textContent = "5–9 per month";
-        extraClientsEl.textContent = "2–5 extra clients/month";
-      } else if (score >= 50) {
-        headlineEl.textContent = "Your website is costing you customers";
-        textEl.textContent = "Your site looks outdated, loads too slowly on mobile, and makes it harder for people to trust you and book.";
-        lostCustomersEl.textContent = "12–18 per month";
-        extraClientsEl.textContent = "4–9 extra clients/month";
+      if (score >= 75) {
+        lostCustomers = "4–8 per month";
+        extraClients = "2–4 extra clients/month";
+        issues = [
+          "Homepage can be clearer above the fold",
+          "Mobile layout could guide action better",
+          "Call-to-action needs more emphasis",
+          "Trust signals could be stronger"
+        ];
+        impacts = [
+          "Some visitors hesitate before contacting you",
+          "Mobile users may not see the next step fast enough",
+          "The site feels decent but not conversion-focused",
+          "You may be missing easy wins"
+        ];
+        cta = "Your website is doing okay, but a cleaner layout could still turn more visitors into paying customers.";
+        scoreColor = "#22b36b";
+      } else if (score >= 62) {
+        lostCustomers = "8–14 per month";
+        extraClients = "3–6 extra clients/month";
+        issues = [
+          "Weak first screen structure",
+          "Call-to-action is not strong enough",
+          "Mobile layout creates friction",
+          "Important content is easy to miss"
+        ];
+        impacts = [
+          "Visitors leave before taking action",
+          "Lower trust on first impression",
+          "Fewer calls, bookings, and quote requests",
+          "Mobile users drop off faster"
+        ];
+        cta = "A cleaner, faster page could help turn more visitors into real calls, quotes, and bookings.";
+        scoreColor = "#f39a1f";
       } else {
-        headlineEl.textContent = "Your website is hurting your business";
-        textEl.textContent = "Your site likely drives visitors away before they call, book, or message you.";
-        lostCustomersEl.textContent = "18–30 per month";
-        extraClientsEl.textContent = "6–12 extra clients/month";
+        lostCustomers = "12–18 per month";
+        extraClients = "4–9 extra clients/month";
+        issues = [
+          "Slow mobile load speed",
+          "Weak call-to-action above the fold",
+          "Poor first screen layout",
+          "Missing booking / enquiry optimisation"
+        ];
+        impacts = [
+          "Visitors leave before taking action",
+          "Lower trust on first impression",
+          "Fewer calls, bookings, and quote requests",
+          "Mobile users drop off faster"
+        ];
+        cta = "Your site is likely costing you leads every month. A focused homepage upgrade could make a real difference fast.";
+        scoreColor = "#e56a54";
       }
 
-      resultBlock.style.display = "block";
-      resultBlock.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        loadingStep.textContent = "Building your conversion summary and upgrade preview...";
+      }, 1100);
+
+      setTimeout(() => {
+        loading.style.display = "none";
+        result.style.display = "block";
+
+        scannedUrlText.textContent = "Website scanned: " + domain;
+        previewDomain.textContent = domain;
+
+        scoreBadge.style.background = scoreColor;
+        animateScore(scoreBadge, 0, score, 900);
+
+        lostCustomersText.textContent = lostCustomers;
+        extraClientsText.textContent = extraClients;
+        ctaText.textContent = cta;
+
+        issuesList.innerHTML = issues.map(item => `<li>${item}</li>`).join("");
+        impactList.innerHTML = impacts.map(item => `<li>${item}</li>`).join("");
+
+        if (score >= 75) {
+          sitePreview.querySelector(".preview-hero").style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
+        } else if (score >= 62) {
+          sitePreview.querySelector(".preview-hero").style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
+        } else {
+          sitePreview.querySelector(".preview-hero").style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
+        }
+
+        result.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 2600);
     }
   </script>
 </body>
