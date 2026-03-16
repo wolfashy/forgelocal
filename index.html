@@ -997,10 +997,10 @@
           <div>
             <h3>Website Speed & Mobile Upgrade</h3>
             <p class="muted" style="margin:0; color:#d2cbc4; line-height:1.8; max-width:520px;">
-              Ideal for local businesses with an outdated website that looks weak on mobile or fails to clearly convert visitors.
+              A focused homepage upgrade for local businesses that need a cleaner first impression, better mobile flow, and more calls, quotes, and bookings.
             </p>
           </div>
-          <div class="price">$399 <small>AUD</small></div>
+          <div class="price">$299 <small>AUD</small></div>
         </div>
 
         <div class="pricing-features">
@@ -1017,7 +1017,7 @@
             No bloated retainers. No confusing agency packages. Just a fast, clear upgrade to the page that matters most.
           </p>
           <a class="btn btn-primary" href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00" target="_blank" rel="noopener noreferrer">
-            Buy the Upgrade
+            Fix My Website for $299
           </a>
         </div>
       </div>
@@ -1067,7 +1067,7 @@
           </p>
         </div>
         <a href="https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          Start My Upgrade
+          Fix My Website for $299
         </a>
       </div>
     </div>
@@ -1102,6 +1102,7 @@
 
       const score = Math.floor(Math.random() * 25) + 60;
       const lost = Math.floor(Math.random() * 20) + 20;
+      const extraClients = Math.floor(Math.random() * 8) + 4;
 
       let scoreClass = "score-low";
       if (score >= 70) scoreClass = "score-mid";
@@ -1129,7 +1130,7 @@
           </div>
 
           <div class="scan-card">
-            <h4>What this usually means</h4>
+            <h4>Business impact</h4>
             <ul>
               <li>Visitors leave before taking action</li>
               <li>Lower trust on first impression</li>
@@ -1141,11 +1142,21 @@
 
         <div class="scan-loss">Estimated lost customers: ${lost}%</div>
 
+        <div class="scan-card" style="margin-top:18px;">
+          <h4>Fix estimate</h4>
+          <ul>
+            <li>Estimated cost to fix: <strong>$299</strong></li>
+            <li>Potential extra clients per month: <strong>${extraClients}</strong></li>
+            <li>Cleaner mobile experience</li>
+            <li>Stronger trust and action flow</li>
+          </ul>
+        </div>
+
         <div class="scan-cta">
           <p>
-            We can turn this into a cleaner, faster, mobile-first page built to win more calls, quotes, and bookings.
+            A cleaner, faster page could help turn more visitors into real calls, quotes, and bookings.
           </p>
-          <a href="#pricing" class="btn btn-primary">See Pricing</a>
+          <a href="#pricing" class="btn btn-primary">Fix My Website for $299</a>
         </div>
       `;
     });
