@@ -1288,8 +1288,8 @@
       </div>
 
       <div class="scanner-box">
-        <input id="scanInput" type="text" placeholder="Enter your website URL" />
-        <button id="scanBtn" class="btn btn-primary">Scan My Website</button>
+        <input id="scanInput" type="url" placeholder="Enter your website URL" />
+        <button id="scanBtn" class="btn btn-primary" onclick="runScan()">Scan My Website</button>
       </div>
 
       <!-- SCANNER RESULT BLOCK -->
@@ -1510,20 +1510,26 @@
   </footer>
 
   <script>
-    const scanBtn = document.getElementById("scanBtn");
-    const scanInput = document.getElementById("scanInput");
+    function runScan() {
+      const urlInput = document.getElementById("scanInput").value;
 
-    scanBtn.addEventListener("click", function () {
-      const url = scanInput.value.trim();
-
-      if (!url) {
-        alert("Please enter a website URL");
+      if (!urlInput) {
+        alert("Please enter a website URL first");
         return;
       }
 
-      const score = Math.floor(Math.random() * 25) + 60;
-      showScanResult(score);
-    });
+      const result = document.getElementById("scan-result");
+
+      // fake scan delay
+      result.style.display = "none";
+
+      setTimeout(() => {
+        // random score
+        const score = Math.floor(Math.random() * 40) + 50;
+
+        showScanResult(score);
+      }, 1200);
+    }
 
     function showScanResult(score = 58) {
       const resultBlock = document.getElementById("scan-result");
