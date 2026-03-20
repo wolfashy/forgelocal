@@ -828,36 +828,67 @@
 
     .screenshot-card{
       border:1px solid #eadbce;
-      border-radius:20px;
+      border-radius:22px;
       padding:18px;
       background:#fffaf6;
       margin-bottom:20px;
     }
 
-    .screenshot-top{
+    .screenshot-header{
       display:flex;
       justify-content:space-between;
-      gap:12px;
-      align-items:center;
-      margin-bottom:14px;
+      align-items:flex-start;
+      gap:18px;
       flex-wrap:wrap;
+      margin-bottom:18px;
     }
 
-    .screenshot-label{
-      font-size:13px;
-      font-weight:700;
+    .screenshot-kicker{
+      display:inline-block;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      color:#b45d00;
+      background:#fff1e4;
+      border:1px solid #f1dccb;
+      padding:7px 10px;
+      border-radius:999px;
+      margin-bottom:10px;
+    }
+
+    .screenshot-title{
+      margin:0 0 6px;
+      font-size:24px;
+      line-height:1.15;
       color:#111;
     }
 
-    .screenshot-url{
+    .screenshot-subtitle{
+      margin:0;
+      color:#6f665f;
+      line-height:1.7;
+      max-width:720px;
+      font-size:14px;
+    }
+
+    .screenshot-domain-pill{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid #eadbce;
+      background:#fff;
+      color:#5c554f;
       font-size:13px;
-      color:#7a7068;
+      font-weight:700;
+      white-space:nowrap;
+      box-shadow:var(--shadow-sm);
     }
 
     .compare-grid{
       display:grid;
       grid-template-columns:repeat(2, 1fr);
-      gap:18px;
+      gap:22px;
+      align-items:start;
     }
 
     .compare-panel{
@@ -866,13 +897,51 @@
       gap:12px;
     }
 
+    .compare-label-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:10px;
+      flex-wrap:wrap;
+    }
+
+    .compare-label{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+    }
+
+    .compare-label.before{
+      background:#fff1ef;
+      color:#c45343;
+      border:1px solid #f1d2cb;
+    }
+
+    .compare-label.after{
+      background:#eefaf3;
+      color:#1f8a57;
+      border:1px solid #cfe8d8;
+    }
+
+    .compare-note{
+      color:#7d736b;
+      font-size:13px;
+      font-weight:700;
+    }
+
     .site-preview,
     .after-mockup{
-      border-radius:18px;
+      border-radius:22px;
       overflow:hidden;
-      border:1px solid #e6d7cb;
+      border:1px solid #e8d9cd;
       background:#fff;
-      box-shadow:var(--shadow-sm);
+      box-shadow:0 10px 28px rgba(0,0,0,0.05);
     }
 
     .browser-bar{
@@ -892,29 +961,56 @@
       background:#dfcdbf;
     }
 
+    .browser-domain{
+      margin-left:auto;
+      font-size:12px;
+      color:#8a7d73;
+      font-weight:700;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
     .light-bar{
       background:#f8f0e8;
     }
 
     .preview-live-wrap{
+      position:relative;
+      min-height:420px;
       background:#fff;
-      min-height:260px;
     }
 
     .preview-image{
       display:block;
       width:100%;
-      height:auto;
-      max-height:520px;
+      height:420px;
       object-fit:cover;
+      object-position:top;
       background:#fff;
     }
 
     .preview-fallback{
       display:block;
-      padding:24px;
-      min-height:220px;
-      background:linear-gradient(180deg, #fff, #fbf5ef);
+      min-height:420px;
+      padding:22px;
+      background:linear-gradient(180deg, #fff, #faf4ee);
+    }
+
+    .fallback-site-shell{
+      border:1px solid #eadbce;
+      border-radius:18px;
+      background:#fff;
+      padding:16px;
+      box-shadow:var(--shadow-sm);
+    }
+
+    .fallback-nav{
+      width:42%;
+      height:14px;
+      border-radius:999px;
+      background:#ece1d6;
+      margin-bottom:16px;
     }
 
     .preview-hero{
@@ -945,17 +1041,59 @@
       background:#ff7a00;
     }
 
+    .preview-overlay-tags{
+      position:absolute;
+      left:14px;
+      bottom:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .overlay-tag{
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      box-shadow:0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    .overlay-tag.weak{
+      background:#fff1ef;
+      color:#c45343;
+    }
+
+    .overlay-tag.unclear{
+      background:#fff8e9;
+      color:#aa6a00;
+    }
+
+    .overlay-tag.mobile{
+      background:#f3f4ff;
+      color:#5a56c8;
+    }
+
     .after-frame{
+      min-height:420px;
       padding:20px;
-      min-height:260px;
       background:linear-gradient(180deg, #fffaf5, #fff3e8);
     }
 
     .after-hero{
-      border-radius:18px;
+      border-radius:20px;
       background:linear-gradient(135deg, #ff7a00, #ffb066);
       padding:18px;
       margin-bottom:16px;
+      box-shadow:0 12px 24px rgba(255,122,0,0.14);
+    }
+
+    .after-top-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:12px;
     }
 
     .after-pill{
@@ -966,27 +1104,33 @@
       border-radius:999px;
       background:rgba(255,255,255,0.22);
       color:#fff;
-      margin-bottom:12px;
     }
 
-    .after-title{
-      height:28px;
-      width:72%;
+    .after-mini-badge{
+      font-size:11px;
+      font-weight:800;
+      padding:6px 10px;
       border-radius:999px;
-      background:rgba(255,255,255,0.95);
-      margin-bottom:12px;
+      background:rgba(255,255,255,0.20);
+      color:#fff;
     }
 
-    .after-line{
-      height:12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.72);
+    .after-headline{
+      color:#fff;
+      font-size:24px;
+      line-height:1.08;
+      font-weight:900;
+      letter-spacing:-0.04em;
+      max-width:420px;
       margin-bottom:10px;
-      width:100%;
     }
 
-    .after-line.short{
-      width:58%;
+    .after-subtext{
+      color:rgba(255,255,255,0.90);
+      font-size:14px;
+      line-height:1.6;
+      max-width:420px;
+      margin-bottom:14px;
     }
 
     .after-actions{
@@ -1010,32 +1154,70 @@
       background:rgba(255,255,255,0.72);
     }
 
-    .after-content{
+    .after-feature-row{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
       gap:12px;
+      margin-bottom:12px;
     }
 
-    .after-content-card{
-      height:92px;
+    .after-feature-card{
+      background:#fff;
+      border:1px solid #f0ddd0;
+      border-radius:16px;
+      padding:14px;
+      min-height:108px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.04);
+    }
+
+    .feature-icon{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:#fff1e4;
+      margin-bottom:12px;
+    }
+
+    .feature-line{
+      height:10px;
+      border-radius:999px;
+      background:#ead8c8;
+      margin-bottom:8px;
+    }
+
+    .feature-line.long{ width:100%; }
+    .feature-line.short{ width:62%; }
+
+    .after-bottom-strip{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .after-bottom-box{
+      height:82px;
       border-radius:16px;
       background:#fff;
       border:1px solid #f0ddd0;
       box-shadow:0 6px 18px rgba(0,0,0,0.04);
     }
 
+    .compare-caption{
+      margin-top:12px;
+    }
+
     .compare-caption strong{
       display:block;
-      font-size:15px;
+      font-size:16px;
       color:#111;
       margin-bottom:4px;
     }
 
     .compare-caption p{
       margin:0;
-      color:#6b635d;
+      color:#645c55;
       font-size:14px;
-      line-height:1.6;
+      line-height:1.7;
     }
 
     .result-grid,
@@ -1486,13 +1668,28 @@
         align-items:flex-start;
       }
 
-      .after-content{
-        grid-template-columns:1fr;
-      }
-
       .result-box,
       .stat-box{
         padding:16px;
+      }
+
+      .preview-live-wrap,
+      .after-frame,
+      .preview-fallback{
+        min-height:auto;
+      }
+
+      .preview-image{
+        height:320px;
+      }
+
+      .after-feature-row,
+      .after-bottom-strip{
+        grid-template-columns:1fr;
+      }
+
+      .after-headline{
+        font-size:20px;
       }
     }
 
@@ -1840,16 +2037,28 @@
           </div>
 
           <div class="screenshot-card">
-            <div class="screenshot-top">
-              <span class="screenshot-label">Current site vs improved direction</span>
-              <span class="screenshot-url" id="previewDomain">yourwebsite.com</span>
+            <div class="screenshot-header">
+              <div>
+                <span class="screenshot-kicker">Before vs After</span>
+                <h4 class="screenshot-title">See how your website could look with a clearer, higher-converting layout</h4>
+                <p class="screenshot-subtitle">
+                  Left: what visitors likely see now. Right: a stronger direction designed to improve calls, bookings, and enquiries.
+                </p>
+              </div>
+              <div class="screenshot-domain-pill" id="previewDomain">yourwebsite.com</div>
             </div>
 
             <div class="compare-grid">
               <div class="compare-panel">
+                <div class="compare-label-row">
+                  <span class="compare-label before">Current website</span>
+                  <span class="compare-note" id="beforeQualityNote">What visitors see now</span>
+                </div>
+
                 <div class="site-preview">
                   <div class="browser-bar">
                     <span></span><span></span><span></span>
+                    <div class="browser-domain" id="browserDomainBefore">yourwebsite.com</div>
                   </div>
 
                   <div class="preview-live-wrap">
@@ -1861,50 +2070,95 @@
                     />
 
                     <div id="previewFallback" class="preview-fallback">
-                      <div class="preview-hero"></div>
-                      <div class="preview-line short"></div>
-                      <div class="preview-line"></div>
-                      <div class="preview-line"></div>
-                      <div class="preview-button"></div>
+                      <div class="fallback-site-shell">
+                        <div class="fallback-nav"></div>
+                        <div class="preview-hero"></div>
+                        <div class="preview-line short"></div>
+                        <div class="preview-line"></div>
+                        <div class="preview-line"></div>
+                        <div class="preview-button"></div>
+                      </div>
+                    </div>
+
+                    <div class="preview-overlay-tags">
+                      <div class="overlay-tag weak" id="issueTag1">Weak CTA</div>
+                      <div class="overlay-tag unclear" id="issueTag2">Unclear first screen</div>
+                      <div class="overlay-tag mobile" id="issueTag3">Mobile friction</div>
                     </div>
                   </div>
                 </div>
 
                 <div class="compare-caption">
                   <strong>Current site</strong>
-                  <p id="beforeCaption">This is what visitors likely experience now.</p>
+                  <p id="beforeCaption">
+                    This is what visitors likely experience right now before deciding whether to stay, call, or leave.
+                  </p>
                 </div>
               </div>
 
               <div class="compare-panel">
+                <div class="compare-label-row">
+                  <span class="compare-label after">Improved direction</span>
+                  <span class="compare-note" id="afterQualityNote">How ForgeLocal would improve it</span>
+                </div>
+
                 <div class="after-mockup">
                   <div class="browser-bar light-bar">
                     <span></span><span></span><span></span>
+                    <div class="browser-domain" id="browserDomainAfter">yourwebsite.com</div>
                   </div>
 
                   <div class="after-frame">
                     <div class="after-hero" id="afterHero">
-                      <div class="after-pill">Built to convert</div>
-                      <div class="after-title"></div>
-                      <div class="after-line short"></div>
-                      <div class="after-line"></div>
+                      <div class="after-top-row">
+                        <div class="after-pill">Built to convert</div>
+                        <div class="after-mini-badge" id="afterMiniBadge">Cleaner mobile flow</div>
+                      </div>
+
+                      <div class="after-headline" id="afterHeadline">
+                        Clear headline. Strong CTA. Better first impression.
+                      </div>
+
+                      <div class="after-subtext" id="afterSubtext">
+                        A more modern homepage layout that guides visitors toward the next step faster.
+                      </div>
+
                       <div class="after-actions">
                         <div class="after-btn primary"></div>
                         <div class="after-btn secondary"></div>
                       </div>
                     </div>
 
-                    <div class="after-content">
-                      <div class="after-content-card"></div>
-                      <div class="after-content-card"></div>
-                      <div class="after-content-card"></div>
+                    <div class="after-feature-row">
+                      <div class="after-feature-card">
+                        <div class="feature-icon"></div>
+                        <div class="feature-line long"></div>
+                        <div class="feature-line short"></div>
+                      </div>
+                      <div class="after-feature-card">
+                        <div class="feature-icon"></div>
+                        <div class="feature-line long"></div>
+                        <div class="feature-line short"></div>
+                      </div>
+                      <div class="after-feature-card">
+                        <div class="feature-icon"></div>
+                        <div class="feature-line long"></div>
+                        <div class="feature-line short"></div>
+                      </div>
+                    </div>
+
+                    <div class="after-bottom-strip">
+                      <div class="after-bottom-box"></div>
+                      <div class="after-bottom-box"></div>
                     </div>
                   </div>
                 </div>
 
                 <div class="compare-caption">
                   <strong>Improved direction</strong>
-                  <p id="afterCaption">Cleaner structure, stronger CTA, better mobile flow.</p>
+                  <p id="afterCaption">
+                    A sharper headline, cleaner structure, and stronger call-to-action could make the page feel easier to trust and act on.
+                  </p>
                 </div>
               </div>
             </div>
@@ -2190,208 +2444,254 @@
     </div>
   </footer>
 
-<script>
-  const STRIPE_URL = "https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00";
-  const API_URL = "https://forgelocal-scanner.onrender.com/scan";
+  <script>
+    const STRIPE_URL = "https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00";
+    const API_URL = "https://forgelocal-scanner.onrender.com/scan";
 
-  function normalizeUrl(url) {
-    const trimmed = url.trim();
-    if (!trimmed) return "";
-    if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
-    return "https://" + trimmed;
-  }
-
-  function isValidUrl(value) {
-    try {
-      const url = new URL(normalizeUrl(value));
-      return !!url.hostname;
-    } catch {
-      return false;
-    }
-  }
-
-  function getDomainFromUrl(url) {
-    try {
-      return new URL(normalizeUrl(url)).hostname.replace("www.", "");
-    } catch {
-      return url.replace(/^https?:\/\//, "").replace("www.", "").split("/")[0];
-    }
-  }
-
-  function animateScore(element, start, end, duration) {
-    let startTime = null;
-
-    function update(currentTime) {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      const current = Math.floor(progress * (end - start) + start);
-      element.textContent = current + "/100";
-      if (progress < 1) requestAnimationFrame(update);
+    function normalizeUrl(url) {
+      const trimmed = url.trim();
+      if (!trimmed) return "";
+      if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
+      return "https://" + trimmed;
     }
 
-    requestAnimationFrame(update);
-  }
-
-  function setPreviewScreenshot(url, score) {
-    const previewImage = document.getElementById("previewImage");
-    const previewFallback = document.getElementById("previewFallback");
-    const previewHero = previewFallback.querySelector(".preview-hero");
-    const afterHero = document.getElementById("afterHero");
-    const beforeCaption = document.getElementById("beforeCaption");
-
-    if (score >= 75) {
-      previewHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
-      afterHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
-    } else if (score >= 60) {
-      previewHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
-      afterHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
-    } else {
-      previewHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
-      afterHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
+    function isValidUrl(value) {
+      try {
+        const url = new URL(normalizeUrl(value));
+        return !!url.hostname;
+      } catch {
+        return false;
+      }
     }
 
-    previewImage.style.display = "none";
-    previewFallback.style.display = "block";
-
-    const screenshotUrl =
-      "https://image.microlink.io/?url=" +
-      encodeURIComponent(url) +
-      "&screenshot=true&meta=false&embed=screenshot.url";
-
-    previewImage.onload = function () {
-      previewImage.style.display = "block";
-      previewFallback.style.display = "none";
-      beforeCaption.textContent = "This gives a live preview of what visitors see now.";
-    };
-
-    previewImage.onerror = function () {
-      previewImage.style.display = "none";
-      previewFallback.style.display = "block";
-      beforeCaption.textContent = "Live preview unavailable for this site, but the website check summary is still ready.";
-    };
-
-    previewImage.src = screenshotUrl;
-  }
-
-  async function runScan() {
-    const input = document.getElementById("scanInput");
-    const inputError = document.getElementById("inputError");
-    const loading = document.getElementById("scanLoading");
-    const result = document.getElementById("scanResult");
-    const loadingUrlText = document.getElementById("loadingUrlText");
-    const loadingStep = document.getElementById("loadingStep");
-    const scannedUrlText = document.getElementById("scannedUrlText");
-    const previewDomain = document.getElementById("previewDomain");
-    const scoreBadge = document.getElementById("scoreBadge");
-    const lostCustomersText = document.getElementById("lostCustomersText");
-    const extraClientsText = document.getElementById("extraClientsText");
-    const issuesList = document.getElementById("issuesList");
-    const priorityList = document.getElementById("priorityList");
-    const ctaText = document.getElementById("ctaText");
-    const ctaButton = document.getElementById("ctaButton");
-    const offerNote = document.getElementById("offerNote");
-    const resultLabel = document.getElementById("resultLabel");
-    const resultSummary = document.getElementById("resultSummary");
-    const beforeCaption = document.getElementById("beforeCaption");
-    const afterCaption = document.getElementById("afterCaption");
-
-    const rawUrl = input.value.trim();
-
-    if (!rawUrl || !isValidUrl(rawUrl)) {
-      inputError.style.display = "block";
-      input.focus();
-      return;
+    function getDomainFromUrl(url) {
+      try {
+        return new URL(normalizeUrl(url)).hostname.replace("www.", "");
+      } catch {
+        return url.replace(/^https?:\/\//, "").replace("www.", "").split("/")[0];
+      }
     }
 
-    inputError.style.display = "none";
+    function animateScore(element, start, end, duration) {
+      let startTime = null;
 
-    const fullUrl = normalizeUrl(rawUrl);
-    const domain = getDomainFromUrl(rawUrl);
-
-    result.style.display = "none";
-    loading.style.display = "block";
-    loadingUrlText.textContent = "Reviewing " + domain + "...";
-    loadingStep.textContent = "Checking mobile experience, page clarity, trust signals, and call-to-action strength...";
-
-    try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ url: fullUrl })
-      });
-
-      const data = await response.json();
-
-      if (!data.success) {
-        throw new Error(data.error || "Scan failed");
+      function update(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const current = Math.floor(progress * (end - start) + start);
+        element.textContent = current + "/100";
+        if (progress < 1) requestAnimationFrame(update);
       }
 
-      const scan = data.result;
-      const finalUrl = data.url;
+      requestAnimationFrame(update);
+    }
 
-      setTimeout(() => {
-        loadingStep.textContent = "Building your conversion snapshot and improvement direction...";
-      }, 900);
+    function makeIssueTags(scan) {
+      const defaults = ["Weak CTA", "Unclear first screen", "Mobile friction"];
+      const map = {
+        "Weak or missing call-to-action": "Weak CTA",
+        "Missing clear main heading": "Weak headline",
+        "Missing mobile viewport tag": "Mobile friction",
+        "Slow response time": "Slow feel",
+        "Low content depth or weak messaging": "Weak messaging",
+        "Very limited visual content": "Weak visuals",
+        "Missing or weak meta description": "Weak trust signals",
+        "Weak or missing page title": "Weak clarity",
+        "Website is not using HTTPS": "Lower trust"
+      };
 
-      setTimeout(() => {
-        loading.style.display = "none";
-        result.style.display = "block";
+      const tags = scan.issues.map(issue => map[issue] || issue).slice(0, 3);
+      while (tags.length < 3) {
+        tags.push(defaults[tags.length]);
+      }
 
-        scannedUrlText.textContent = "Website checked: " + scan.domain;
-        previewDomain.textContent = scan.domain;
+      document.getElementById("issueTag1").textContent = tags[0];
+      document.getElementById("issueTag2").textContent = tags[1];
+      document.getElementById("issueTag3").textContent = tags[2];
+    }
 
-        if (scan.score >= 75) {
-          scoreBadge.style.background = "#22b36b";
-          resultLabel.textContent = "Decent base, but still room to convert better";
-          ctaButton.textContent = "Upgrade My Homepage";
-          afterCaption.textContent = "A sharper headline, clearer structure, and stronger CTA could lift conversions.";
-          beforeCaption.textContent = "The current site works, but it is not pushing action strongly enough.";
-        } else if (scan.score >= 60) {
-          scoreBadge.style.background = "#f39a1f";
-          resultLabel.textContent = "Good base, but noticeable conversion friction";
-          ctaButton.textContent = "Upgrade My Homepage";
-          afterCaption.textContent = "A clearer layout and better mobile flow could turn more visitors into enquiries.";
-          beforeCaption.textContent = "The site likely loses visitors because the first screen is not guiding them clearly.";
-        } else {
-          scoreBadge.style.background = "#e0564a";
-          resultLabel.textContent = "Likely costing you leads each month";
-          ctaButton.textContent = "Fix My Website for $299";
-          afterCaption.textContent = "A rebuilt homepage could create a stronger first impression and drive more calls and bookings.";
-          beforeCaption.textContent = "The current site likely feels slow, cluttered, or hard to act on for new visitors.";
+    function setPreviewScreenshot(url, score) {
+      const previewImage = document.getElementById("previewImage");
+      const previewFallback = document.getElementById("previewFallback");
+      const previewHero = previewFallback.querySelector(".preview-hero");
+      const afterHero = document.getElementById("afterHero");
+      const beforeCaption = document.getElementById("beforeCaption");
+      const afterCaption = document.getElementById("afterCaption");
+      const afterHeadline = document.getElementById("afterHeadline");
+      const afterSubtext = document.getElementById("afterSubtext");
+      const afterMiniBadge = document.getElementById("afterMiniBadge");
+
+      if (score >= 75) {
+        previewHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
+        afterHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
+        afterHeadline.textContent = "Small layout improvements could turn more visitors into enquiries.";
+        afterSubtext.textContent = "Your site has a decent base, but a cleaner first screen and stronger CTA could improve conversion.";
+        afterMiniBadge.textContent = "Stronger action path";
+        afterCaption.textContent = "A sharper headline, clearer structure, and stronger CTA could lift conversions.";
+      } else if (score >= 60) {
+        previewHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
+        afterHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
+        afterHeadline.textContent = "Cleaner layout. Better mobile flow. More reason to contact.";
+        afterSubtext.textContent = "A clearer homepage structure can reduce friction and help more visitors take the next step.";
+        afterMiniBadge.textContent = "Better mobile clarity";
+        afterCaption.textContent = "A clearer layout and better mobile flow could turn more visitors into enquiries.";
+      } else {
+        previewHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
+        afterHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
+        afterHeadline.textContent = "A rebuilt homepage could dramatically improve first impressions.";
+        afterSubtext.textContent = "Stronger structure, cleaner hierarchy, and more obvious CTA sections could help stop visitors from dropping off.";
+        afterMiniBadge.textContent = "Higher-converting redesign";
+        afterCaption.textContent = "A rebuilt homepage could create a stronger first impression and drive more calls and bookings.";
+      }
+
+      previewImage.style.display = "none";
+      previewFallback.style.display = "block";
+
+      const screenshotUrl =
+        "https://image.microlink.io/?url=" +
+        encodeURIComponent(url) +
+        "&screenshot=true&meta=false&embed=screenshot.url";
+
+      previewImage.onload = function () {
+        previewImage.style.display = "block";
+        previewFallback.style.display = "none";
+        beforeCaption.textContent = "This is a live preview of what visitors see on the current website.";
+      };
+
+      previewImage.onerror = function () {
+        previewImage.style.display = "none";
+        previewFallback.style.display = "block";
+        beforeCaption.textContent = "Live preview unavailable for this site, but the website check summary is still ready.";
+      };
+
+      previewImage.src = screenshotUrl;
+    }
+
+    async function runScan() {
+      const input = document.getElementById("scanInput");
+      const inputError = document.getElementById("inputError");
+      const loading = document.getElementById("scanLoading");
+      const result = document.getElementById("scanResult");
+      const loadingUrlText = document.getElementById("loadingUrlText");
+      const loadingStep = document.getElementById("loadingStep");
+      const scannedUrlText = document.getElementById("scannedUrlText");
+      const previewDomain = document.getElementById("previewDomain");
+      const browserDomainBefore = document.getElementById("browserDomainBefore");
+      const browserDomainAfter = document.getElementById("browserDomainAfter");
+      const scoreBadge = document.getElementById("scoreBadge");
+      const lostCustomersText = document.getElementById("lostCustomersText");
+      const extraClientsText = document.getElementById("extraClientsText");
+      const issuesList = document.getElementById("issuesList");
+      const priorityList = document.getElementById("priorityList");
+      const ctaText = document.getElementById("ctaText");
+      const ctaButton = document.getElementById("ctaButton");
+      const offerNote = document.getElementById("offerNote");
+      const resultLabel = document.getElementById("resultLabel");
+      const resultSummary = document.getElementById("resultSummary");
+      const beforeCaption = document.getElementById("beforeCaption");
+      const afterCaption = document.getElementById("afterCaption");
+
+      const rawUrl = input.value.trim();
+
+      if (!rawUrl || !isValidUrl(rawUrl)) {
+        inputError.style.display = "block";
+        input.focus();
+        return;
+      }
+
+      inputError.style.display = "none";
+
+      const fullUrl = normalizeUrl(rawUrl);
+      const domain = getDomainFromUrl(rawUrl);
+
+      result.style.display = "none";
+      loading.style.display = "block";
+      loadingUrlText.textContent = "Reviewing " + domain + "...";
+      loadingStep.textContent = "Checking mobile experience, page clarity, trust signals, and call-to-action strength...";
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ url: fullUrl })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || "Scan failed");
         }
 
-        animateScore(scoreBadge, 0, scan.score, 900);
+        const scan = data.result;
+        const finalUrl = data.url;
 
-        resultSummary.textContent = scan.summary;
-        lostCustomersText.textContent = scan.lost_customers;
-        extraClientsText.textContent = scan.extra_clients;
-        ctaText.textContent = scan.summary;
-        ctaButton.href = STRIPE_URL;
-        offerNote.textContent = "Response time: " + scan.response_time_ms + "ms • Page size: " + scan.html_size_kb + " KB";
+        setTimeout(() => {
+          loadingStep.textContent = "Building your conversion snapshot and improvement direction...";
+        }, 900);
 
-        issuesList.innerHTML = scan.issues.map(item => `<li>${item}</li>`).join("");
-        priorityList.innerHTML = scan.priorities.map(item => `<li>${item}</li>`).join("");
+        setTimeout(() => {
+          loading.style.display = "none";
+          result.style.display = "block";
 
-        setPreviewScreenshot(finalUrl, scan.score);
+          scannedUrlText.textContent = "Website checked: " + scan.domain;
+          previewDomain.textContent = scan.domain;
+          browserDomainBefore.textContent = scan.domain;
+          browserDomainAfter.textContent = scan.domain;
 
-        result.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 2200);
+          if (scan.score >= 75) {
+            scoreBadge.style.background = "#22b36b";
+            resultLabel.textContent = "Decent base, but still room to convert better";
+            ctaButton.textContent = "Upgrade My Homepage";
+            afterCaption.textContent = "A sharper headline, clearer structure, and stronger CTA could lift conversions.";
+            beforeCaption.textContent = "The current site works, but it is not pushing action strongly enough.";
+          } else if (scan.score >= 60) {
+            scoreBadge.style.background = "#f39a1f";
+            resultLabel.textContent = "Good base, but noticeable conversion friction";
+            ctaButton.textContent = "Upgrade My Homepage";
+            afterCaption.textContent = "A clearer layout and better mobile flow could turn more visitors into enquiries.";
+            beforeCaption.textContent = "The site likely loses visitors because the first screen is not guiding them clearly.";
+          } else {
+            scoreBadge.style.background = "#e0564a";
+            resultLabel.textContent = "Likely costing you leads each month";
+            ctaButton.textContent = "Fix My Website for $299";
+            afterCaption.textContent = "A rebuilt homepage could create a stronger first impression and drive more calls and bookings.";
+            beforeCaption.textContent = "The current site likely feels slow, cluttered, or hard to act on for new visitors.";
+          }
 
-    } catch (error) {
-      loading.style.display = "none";
-      alert("Scanner error: " + error.message);
-      console.error(error);
+          animateScore(scoreBadge, 0, scan.score, 900);
+
+          resultSummary.textContent = scan.summary;
+          lostCustomersText.textContent = scan.lost_customers;
+          extraClientsText.textContent = scan.extra_clients;
+          ctaText.textContent = scan.summary;
+          ctaButton.href = STRIPE_URL;
+          offerNote.textContent = "Response time: " + scan.response_time_ms + "ms • Page size: " + scan.html_size_kb + " KB";
+
+          issuesList.innerHTML = scan.issues.map(item => `<li>${item}</li>`).join("");
+          priorityList.innerHTML = scan.priorities.map(item => `<li>${item}</li>`).join("");
+
+          makeIssueTags(scan);
+          setPreviewScreenshot(finalUrl, scan.score);
+
+          result.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 2200);
+
+      } catch (error) {
+        loading.style.display = "none";
+        result.style.display = "none";
+        alert("Scanner error: " + error.message);
+        console.error(error);
+      }
     }
-  }
 
-  document.getElementById("scanInput").addEventListener("input", function () {
-    const inputError = document.getElementById("inputError");
-    if (this.value.trim()) {
-      inputError.style.display = "none";
-    }
-  });
-</script>
+    document.getElementById("scanInput").addEventListener("input", function () {
+      const inputError = document.getElementById("inputError");
+      if (this.value.trim()) {
+        inputError.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
