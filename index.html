@@ -2190,324 +2190,208 @@
     </div>
   </footer>
 
-  <script>
-    const STRIPE_URL = "https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00";
+<script>
+  const STRIPE_URL = "https://buy.stripe.com/4gM9AS8sTdkSf8i36WbjW00";
+  const API_URL = "http://127.0.0.1:5050/scan";
 
-    function normalizeUrl(url) {
-      const trimmed = url.trim();
-      if (!trimmed) return "";
-      if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
-      return "https://" + trimmed;
+  function normalizeUrl(url) {
+    const trimmed = url.trim();
+    if (!trimmed) return "";
+    if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
+    return "https://" + trimmed;
+  }
+
+  function isValidUrl(value) {
+    try {
+      const url = new URL(normalizeUrl(value));
+      return !!url.hostname;
+    } catch {
+      return false;
+    }
+  }
+
+  function getDomainFromUrl(url) {
+    try {
+      return new URL(normalizeUrl(url)).hostname.replace("www.", "");
+    } catch {
+      return url.replace(/^https?:\/\//, "").replace("www.", "").split("/")[0];
+    }
+  }
+
+  function animateScore(element, start, end, duration) {
+    let startTime = null;
+
+    function update(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const current = Math.floor(progress * (end - start) + start);
+      element.textContent = current + "/100";
+      if (progress < 1) requestAnimationFrame(update);
     }
 
-    function isValidUrl(value) {
-      try {
-        const url = new URL(normalizeUrl(value));
-        return !!url.hostname;
-      } catch {
-        return false;
-      }
+    requestAnimationFrame(update);
+  }
+
+  function setPreviewScreenshot(url, score) {
+    const previewImage = document.getElementById("previewImage");
+    const previewFallback = document.getElementById("previewFallback");
+    const previewHero = previewFallback.querySelector(".preview-hero");
+    const afterHero = document.getElementById("afterHero");
+    const beforeCaption = document.getElementById("beforeCaption");
+
+    if (score >= 75) {
+      previewHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
+      afterHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
+    } else if (score >= 60) {
+      previewHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
+      afterHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
+    } else {
+      previewHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
+      afterHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
     }
 
-    function getDomainFromUrl(url) {
-      try {
-        return new URL(normalizeUrl(url)).hostname.replace("www.", "");
-      } catch {
-        return url.replace(/^https?:\/\//, "").replace("www.", "").split("/")[0];
-      }
-    }
+    previewImage.style.display = "none";
+    previewFallback.style.display = "block";
 
-    function animateScore(element, start, end, duration) {
-      let startTime = null;
+    const screenshotUrl =
+      "https://image.microlink.io/?url=" +
+      encodeURIComponent(url) +
+      "&screenshot=true&meta=false&embed=screenshot.url";
 
-      function update(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        const current = Math.floor(progress * (end - start) + start);
-        element.textContent = current + "/100";
-        if (progress < 1) requestAnimationFrame(update);
-      }
+    previewImage.onload = function () {
+      previewImage.style.display = "block";
+      previewFallback.style.display = "none";
+      beforeCaption.textContent = "This gives a live preview of what visitors see now.";
+    };
 
-      requestAnimationFrame(update);
-    }
-
-    function analyzeWebsite(url) {
-      return fetch(url, { mode: "no-cors" })
-        .then(() => {
-          return {
-            hasSSL: url.startsWith("https://"),
-            hasMobileViewport: Math.random() > 0.22,
-            hasGoodTitle: Math.random() > 0.28,
-            hasMetaDescription: Math.random() > 0.34,
-            loadTime: Math.random() * 3 + 0.7
-          };
-        })
-        .catch(() => {
-          return {
-            hasSSL: url.startsWith("https://"),
-            hasMobileViewport: false,
-            hasGoodTitle: false,
-            hasMetaDescription: false,
-            loadTime: 4.5
-          };
-        });
-    }
-
-    function calculateScore(analysis) {
-      let score = 50;
-
-      if (analysis.hasSSL) score += 15;
-      if (analysis.hasMobileViewport) score += 15;
-      if (analysis.hasGoodTitle) score += 10;
-      if (analysis.hasMetaDescription) score += 10;
-
-      if (analysis.loadTime > 3) score -= 10;
-      else if (analysis.loadTime > 2) score -= 5;
-
-      score = Math.max(45, Math.min(93, score));
-      return Math.floor(score);
-    }
-
-    function setPreviewScreenshot(url, score) {
-      const previewImage = document.getElementById("previewImage");
-      const previewFallback = document.getElementById("previewFallback");
-      const previewHero = previewFallback.querySelector(".preview-hero");
-      const afterHero = document.getElementById("afterHero");
-      const beforeCaption = document.getElementById("beforeCaption");
-
-      if (score >= 75) {
-        previewHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
-        afterHero.style.background = "linear-gradient(135deg, #ff9e42, #ffd2a6)";
-      } else if (score >= 60) {
-        previewHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
-        afterHero.style.background = "linear-gradient(135deg, #ff7a00, #ffbf85)";
-      } else {
-        previewHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
-        afterHero.style.background = "linear-gradient(135deg, #ff6a3d, #ffb088)";
-      }
-
+    previewImage.onerror = function () {
       previewImage.style.display = "none";
       previewFallback.style.display = "block";
+      beforeCaption.textContent = "Live preview unavailable for this site, but the website check summary is still ready.";
+    };
 
-      const screenshotUrl =
-        "https://image.microlink.io/?url=" +
-        encodeURIComponent(normalizeUrl(url)) +
-        "&screenshot=true&meta=false&embed=screenshot.url";
+    previewImage.src = screenshotUrl;
+  }
 
-      previewImage.onload = function () {
-        previewImage.style.display = "block";
-        previewFallback.style.display = "none";
-        beforeCaption.textContent = "This gives a live preview of what visitors see now.";
-      };
+  async function runScan() {
+    const input = document.getElementById("scanInput");
+    const inputError = document.getElementById("inputError");
+    const loading = document.getElementById("scanLoading");
+    const result = document.getElementById("scanResult");
+    const loadingUrlText = document.getElementById("loadingUrlText");
+    const loadingStep = document.getElementById("loadingStep");
+    const scannedUrlText = document.getElementById("scannedUrlText");
+    const previewDomain = document.getElementById("previewDomain");
+    const scoreBadge = document.getElementById("scoreBadge");
+    const lostCustomersText = document.getElementById("lostCustomersText");
+    const extraClientsText = document.getElementById("extraClientsText");
+    const issuesList = document.getElementById("issuesList");
+    const priorityList = document.getElementById("priorityList");
+    const ctaText = document.getElementById("ctaText");
+    const ctaButton = document.getElementById("ctaButton");
+    const offerNote = document.getElementById("offerNote");
+    const resultLabel = document.getElementById("resultLabel");
+    const resultSummary = document.getElementById("resultSummary");
+    const beforeCaption = document.getElementById("beforeCaption");
+    const afterCaption = document.getElementById("afterCaption");
 
-      previewImage.onerror = function () {
-        previewImage.style.display = "none";
-        previewFallback.style.display = "block";
-        beforeCaption.textContent = "Live preview unavailable for this site, but the website check summary is still ready.";
-      };
+    const rawUrl = input.value.trim();
 
-      previewImage.src = screenshotUrl;
+    if (!rawUrl || !isValidUrl(rawUrl)) {
+      inputError.style.display = "block";
+      input.focus();
+      return;
     }
 
-    function getAuditContent(score) {
-      if (score >= 75) {
-        return {
-          badgeColor: "#22b36b",
-          resultLabel: "Decent base, but still room to convert better",
-          resultSummary: "Your website is doing okay, but it could guide visitors more clearly toward calling, booking, or enquiring.",
-          lostCustomers: "4–8 per month",
-          extraClients: "2–4 extra clients/month",
-          issues: [
-            "Homepage can be clearer above the fold",
-            "Mobile layout could guide action better",
-            "Call-to-action needs more emphasis",
-            "Trust signals could be stronger"
-          ],
-          priorities: [
-            "Sharpen the first screen message",
-            "Strengthen the primary CTA",
-            "Add more trust near key action points"
-          ],
-          cta: "Your site has good bones, but a cleaner conversion flow could still turn more visitors into paying customers.",
-          ctaButton: "Upgrade My Homepage",
-          offerNote: "Best for businesses that already have a decent site but want stronger conversion performance from their existing traffic.",
-          beforeText: "The current site works, but it is not pushing action strongly enough.",
-          afterText: "A sharper headline, clearer structure, and stronger CTA could lift conversions."
-        };
-      }
+    inputError.style.display = "none";
 
-      if (score >= 60) {
-        return {
-          badgeColor: "#f39a1f",
-          resultLabel: "Good base, but noticeable conversion friction",
-          resultSummary: "Your homepage likely loses some visitors because the first screen, mobile flow, or action path is not clear enough.",
-          lostCustomers: "8–14 per month",
-          extraClients: "3–6 extra clients/month",
-          issues: [
-            "Weak first screen structure",
-            "Call-to-action is not strong enough",
-            "Mobile layout creates friction",
-            "Important content is easy to miss"
-          ],
-          priorities: [
-            "Make the first screen clearer",
-            "Add a stronger call-to-action",
-            "Improve mobile readability"
-          ],
-          cta: "A cleaner, faster page could help turn more visitors into real calls, quotes, and bookings.",
-          ctaButton: "Upgrade My Homepage",
-          offerNote: "Best for businesses with a functional site that still feels unclear, weak on mobile, or too passive about getting enquiries.",
-          beforeText: "The site likely loses visitors because the first screen is not guiding them clearly.",
-          afterText: "A clearer layout and better mobile flow could turn more visitors into enquiries."
-        };
-      }
+    const fullUrl = normalizeUrl(rawUrl);
+    const domain = getDomainFromUrl(rawUrl);
 
-      return {
-        badgeColor: "#e0564a",
-        resultLabel: "Likely costing you leads each month",
-        resultSummary: "Your homepage likely has avoidable friction on mobile and may be losing enquiries before visitors ever take the next step.",
-        lostCustomers: "12–18 per month",
-        extraClients: "4–9 extra clients/month",
-        issues: [
-          "Slow mobile load speed",
-          "Weak call-to-action above the fold",
-          "Poor first screen layout",
-          "Missing enquiry optimisation"
-        ],
-        priorities: [
-          "Rebuild the first screen for clarity",
-          "Create a stronger CTA path",
-          "Make the page feel more modern and trustworthy"
-        ],
-        cta: "Your site is likely costing you leads every month. A focused homepage upgrade could make a real difference fast.",
-        ctaButton: "Fix My Website for $299",
-        offerNote: "Best for businesses with an outdated homepage, weak mobile layout, or low enquiry flow that needs a stronger first impression quickly.",
-        beforeText: "The current site likely feels slow, cluttered, or hard to act on for new visitors.",
-        afterText: "A rebuilt homepage could create a stronger first impression and drive more calls and bookings."
-      };
-    }
+    result.style.display = "none";
+    loading.style.display = "block";
+    loadingUrlText.textContent = "Reviewing " + domain + "...";
+    loadingStep.textContent = "Checking mobile experience, page clarity, trust signals, and call-to-action strength...";
 
-    function runScan() {
-      const input = document.getElementById("scanInput");
-      const inputError = document.getElementById("inputError");
-      const loading = document.getElementById("scanLoading");
-      const result = document.getElementById("scanResult");
-      const loadingUrlText = document.getElementById("loadingUrlText");
-      const loadingStep = document.getElementById("loadingStep");
-      const scannedUrlText = document.getElementById("scannedUrlText");
-      const previewDomain = document.getElementById("previewDomain");
-      const scoreBadge = document.getElementById("scoreBadge");
-      const lostCustomersText = document.getElementById("lostCustomersText");
-      const extraClientsText = document.getElementById("extraClientsText");
-      const issuesList = document.getElementById("issuesList");
-      const priorityList = document.getElementById("priorityList");
-      const ctaText = document.getElementById("ctaText");
-      const ctaButton = document.getElementById("ctaButton");
-      const offerNote = document.getElementById("offerNote");
-      const resultLabel = document.getElementById("resultLabel");
-      const resultSummary = document.getElementById("resultSummary");
-      const beforeCaption = document.getElementById("beforeCaption");
-      const afterCaption = document.getElementById("afterCaption");
-
-      const rawUrl = input.value.trim();
-
-      if (!rawUrl || !isValidUrl(rawUrl)) {
-        inputError.style.display = "block";
-        input.focus();
-        return;
-      }
-
-      inputError.style.display = "none";
-
-      const fullUrl = normalizeUrl(rawUrl);
-      const domain = getDomainFromUrl(rawUrl);
-
-      result.style.display = "none";
-      loading.style.display = "block";
-      loadingUrlText.textContent = "Reviewing " + domain + "...";
-      loadingStep.textContent = "Checking mobile experience, page clarity, trust signals, and call-to-action strength...";
-
-      analyzeWebsite(fullUrl).then((analysis) => {
-        const score = calculateScore(analysis);
-        const content = getAuditContent(score);
-
-        setTimeout(() => {
-          loadingStep.textContent = "Building your conversion snapshot and improvement direction...";
-        }, 1100);
-
-        setTimeout(() => {
-          loading.style.display = "none";
-          result.style.display = "block";
-
-          scannedUrlText.textContent = "Website checked: " + domain;
-          previewDomain.textContent = domain;
-          scoreBadge.style.background = content.badgeColor;
-
-          animateScore(scoreBadge, 0, score, 900);
-
-          resultLabel.textContent = content.resultLabel;
-          resultSummary.textContent = content.resultSummary;
-          lostCustomersText.textContent = content.lostCustomers;
-          extraClientsText.textContent = content.extraClients;
-          ctaText.textContent = content.cta;
-          ctaButton.textContent = content.ctaButton;
-          ctaButton.href = STRIPE_URL;
-          offerNote.textContent = content.offerNote;
-          beforeCaption.textContent = content.beforeText;
-          afterCaption.textContent = content.afterText;
-
-          issuesList.innerHTML = content.issues.map(item => `<li>${item}</li>`).join("");
-          priorityList.innerHTML = content.priorities.map(item => `<li>${item}</li>`).join("");
-
-          setPreviewScreenshot(fullUrl, score);
-
-          result.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 2600);
-      }).catch(() => {
-        const score = Math.floor(Math.random() * 36) + 49;
-        const content = getAuditContent(score);
-
-        setTimeout(() => {
-          loadingStep.textContent = "Building your conversion snapshot and improvement direction...";
-        }, 1100);
-
-        setTimeout(() => {
-          loading.style.display = "none";
-          result.style.display = "block";
-
-          scannedUrlText.textContent = "Website checked: " + domain;
-          previewDomain.textContent = domain;
-          scoreBadge.style.background = content.badgeColor;
-
-          animateScore(scoreBadge, 0, score, 900);
-
-          resultLabel.textContent = content.resultLabel;
-          resultSummary.textContent = content.resultSummary;
-          lostCustomersText.textContent = content.lostCustomers;
-          extraClientsText.textContent = content.extraClients;
-          ctaText.textContent = content.cta;
-          ctaButton.textContent = content.ctaButton;
-          ctaButton.href = STRIPE_URL;
-          offerNote.textContent = content.offerNote;
-          beforeCaption.textContent = content.beforeText;
-          afterCaption.textContent = content.afterText;
-
-          issuesList.innerHTML = content.issues.map(item => `<li>${item}</li>`).join("");
-          priorityList.innerHTML = content.priorities.map(item => `<li>${item}</li>`).join("");
-
-          setPreviewScreenshot(fullUrl, score);
-
-          result.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 2600);
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ url: fullUrl })
       });
-    }
 
-    document.getElementById("scanInput").addEventListener("input", function () {
-      const inputError = document.getElementById("inputError");
-      if (this.value.trim()) {
-        inputError.style.display = "none";
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.error || "Scan failed");
       }
-    });
-  </script>
+
+      const scan = data.result;
+      const finalUrl = data.url;
+
+      setTimeout(() => {
+        loadingStep.textContent = "Building your conversion snapshot and improvement direction...";
+      }, 900);
+
+      setTimeout(() => {
+        loading.style.display = "none";
+        result.style.display = "block";
+
+        scannedUrlText.textContent = "Website checked: " + scan.domain;
+        previewDomain.textContent = scan.domain;
+
+        if (scan.score >= 75) {
+          scoreBadge.style.background = "#22b36b";
+          resultLabel.textContent = "Decent base, but still room to convert better";
+          ctaButton.textContent = "Upgrade My Homepage";
+          afterCaption.textContent = "A sharper headline, clearer structure, and stronger CTA could lift conversions.";
+          beforeCaption.textContent = "The current site works, but it is not pushing action strongly enough.";
+        } else if (scan.score >= 60) {
+          scoreBadge.style.background = "#f39a1f";
+          resultLabel.textContent = "Good base, but noticeable conversion friction";
+          ctaButton.textContent = "Upgrade My Homepage";
+          afterCaption.textContent = "A clearer layout and better mobile flow could turn more visitors into enquiries.";
+          beforeCaption.textContent = "The site likely loses visitors because the first screen is not guiding them clearly.";
+        } else {
+          scoreBadge.style.background = "#e0564a";
+          resultLabel.textContent = "Likely costing you leads each month";
+          ctaButton.textContent = "Fix My Website for $299";
+          afterCaption.textContent = "A rebuilt homepage could create a stronger first impression and drive more calls and bookings.";
+          beforeCaption.textContent = "The current site likely feels slow, cluttered, or hard to act on for new visitors.";
+        }
+
+        animateScore(scoreBadge, 0, scan.score, 900);
+
+        resultSummary.textContent = scan.summary;
+        lostCustomersText.textContent = scan.lost_customers;
+        extraClientsText.textContent = scan.extra_clients;
+        ctaText.textContent = scan.summary;
+        ctaButton.href = STRIPE_URL;
+        offerNote.textContent = "Response time: " + scan.response_time_ms + "ms • Page size: " + scan.html_size_kb + " KB";
+
+        issuesList.innerHTML = scan.issues.map(item => `<li>${item}</li>`).join("");
+        priorityList.innerHTML = scan.priorities.map(item => `<li>${item}</li>`).join("");
+
+        setPreviewScreenshot(finalUrl, scan.score);
+
+        result.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 2200);
+
+    } catch (error) {
+      loading.style.display = "none";
+      alert("Scanner error: " + error.message);
+      console.error(error);
+    }
+  }
+
+  document.getElementById("scanInput").addEventListener("input", function () {
+    const inputError = document.getElementById("inputError");
+    if (this.value.trim()) {
+      inputError.style.display = "none";
+    }
+  });
+</script>
 </body>
 </html>
